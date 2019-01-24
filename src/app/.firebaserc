@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "staging": "medex-e6e1f",
+    "default": "medex-e6e1f"
+  }
+}
