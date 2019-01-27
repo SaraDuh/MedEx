@@ -1,0 +1,29 @@
+[debug] [2019-01-27T09:41:26.352Z] ----------------------------------------------------------------------
+[debug] [2019-01-27T09:41:26.354Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-01-27T09:41:26.355Z] CLI Version:   6.3.0
+[debug] [2019-01-27T09:41:26.355Z] Platform:      darwin
+[debug] [2019-01-27T09:41:26.355Z] Node Version:  v10.15.0
+[debug] [2019-01-27T09:41:26.355Z] Time:          Sun Jan 27 2019 12:41:26 GMT+0300 (Arabian Standard Time)
+[debug] [2019-01-27T09:41:26.355Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-27T09:41:26.365Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-27T09:41:26.365Z] > authorizing via signed-in user
+[debug] [2019-01-27T09:41:26.365Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
+[debug] [2019-01-27T09:41:26.367Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-01-27T09:41:26.367Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-01-27T09:41:26.788Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-27T09:41:26.804Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
+
+[debug] [2019-01-27T09:41:27.976Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-27T09:41:27.978Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
+ 
+[debug] [2019-01-27T09:41:29.002Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Mia/Documents/GitHub/MedEx'...
+[info] 
+[debug] [2019-01-27T09:41:29.005Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
+ 
+[debug] [2019-01-27T09:41:29.669Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000

@@ -25,28 +25,20 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--====================// Initialize Firebase===========================================================================-->
+<!--====================// Initialize Firebase++++===========================================================================-->
 
 <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-<script>
+<!-- <script>
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDQLxQEkY_lbpnQQi_JS8MXqCxgMIZr6eY",
-    authDomain: "medex-e6e1f.firebaseapp.com",
-    databaseURL: "https://medex-e6e1f.firebaseio.com",
-    projectId: "medex-e6e1f",
-    storageBucket: "medex-e6e1f.appspot.com",
-    messagingSenderId: "1006108228892"
-  };
-  firebase.initializeApp(config);
-</script>
+
+</script> -->
 <!-- Firebase App is always required and must be first -->
 <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
 
 <!-- Add additional services that you want to use -->
 <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
 
-
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
 
 
 
@@ -86,6 +78,27 @@
 							</button>
 						</div>
 					</div>
+
+					<!-- //+++++++++++++ -->
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button id= "btnLogOut" class="login100-form-btn">
+								Log Out
+							</button>
+						</div>
+					</div>
+
+					<!-- //+++++++++++++ -->
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button id= "btnSignUp" class="login100-form-btn">
+								Sign Up
+							</button>
+						</div>
+					</div>
+
 
 					<div class="text-center p-t-115">
 						<span class="txt1">
