@@ -27,3 +27,32 @@
 [debug] [2019-01-27T09:41:29.669Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2019-01-27T16:14:23.204Z] ----------------------------------------------------------------------
+[debug] [2019-01-27T16:14:23.206Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-01-27T16:14:23.206Z] CLI Version:   6.3.0
+[debug] [2019-01-27T16:14:23.206Z] Platform:      darwin
+[debug] [2019-01-27T16:14:23.206Z] Node Version:  v10.15.0
+[debug] [2019-01-27T16:14:23.210Z] Time:          Sun Jan 27 2019 19:14:23 GMT+0300 (Arabian Standard Time)
+[debug] [2019-01-27T16:14:23.210Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-27T16:14:23.221Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-27T16:14:23.222Z] > authorizing via signed-in user
+[debug] [2019-01-27T16:14:23.222Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
+[debug] [2019-01-27T16:14:23.223Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-01-27T16:14:23.224Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-01-27T16:14:23.872Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-27T16:14:23.893Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
+
+[debug] [2019-01-27T16:14:25.435Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-27T16:14:25.437Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
+ 
+[debug] [2019-01-27T16:14:29.591Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Mia/Documents/GitHub/MedEx'...
+[info] 
+[debug] [2019-01-27T16:14:29.594Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
+ 
+[debug] [2019-01-27T16:14:30.445Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000

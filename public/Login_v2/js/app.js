@@ -25,7 +25,7 @@ const password = txtPass.value;
 const auth = firebase.auth();
 
 // sign in
-const promise = auth.signInWithEmailAndPassword(email, password);
+const promise = firebase.auth().signInWithEmailAndPassword("firebase.lamia@gmail.com", "123456789");
 promise.catch(e => console.log(e.message));
 
 
@@ -39,7 +39,7 @@ const password = txtPass.value;
 const auth = firebase.auth();
 
 // sign in
-const promise = auth.createUserWithEmailAndPassword(email, password);
+const promise = firebase.auth().createUserWithEmailAndPassword("firebase.lamia@gmail.com", "123456789");
 promise.catch(e => console.log(e.message));
 
 
@@ -64,3 +64,57 @@ firebase.auth().signOut();
 
 
 }());
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//     // User is signed in.
+//
+//     document.getElementById("btnLogOut").style.display = "block";
+//
+//
+//     var user = firebase.auth().currentUser;
+//
+//     if(user != null){
+//
+//       // var email_id = user.email;
+//       // document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+//
+//       //console.log(firebaseUser);
+//       console.log("user logged in");
+//       }else{
+//       console.log("not logged in");
+//     }
+//
+//
+//     // No user is signed in.
+//
+//     // document.getElementById("user_div").style.display = "none";
+//     // document.getElementById("login_div").style.display = "block";
+//
+//   }
+// });
+//
+//
+// function logout(){
+//
+//   firebase.auth().signOut();
+// }
+//
+// function login(){
+//
+//
+//
+//   var txtEmail = document.getElementById('email').value;
+//   var txtPass = document.getElementById('password').value;
+//
+//
+//   firebase.auth().signInWithEmailAndPassword(txtEmail, txtPass).catch(function(error) {
+//     // Handle Errors here.
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//
+//     window.alert("Error : " + errorMessage);
+//
+//     // ...
+//   });
+
+//}
