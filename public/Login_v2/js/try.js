@@ -8,16 +8,14 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
+//document.getElementById("logoutDiv").style.display = "flex";
 firebase.auth().onAuthStateChanged(function(user) {
+
   if (user) {
     // User is signed in.
 
-    document.getElementById("btnLogOut").style.display = "block";
-
-
     var user = firebase.auth().currentUser;
-
+    window.location = '/ElaAdmin-master/index.html';
     if(user != null){
 
       // var email_id = user.email;
@@ -25,6 +23,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       //console.log(firebaseUser);
       console.log("user logged in");
+      //document.getElementById("logoutDiv").style.display = "flex";
       }else{
       console.log("not logged in");
     }
@@ -42,9 +41,19 @@ firebase.auth().onAuthStateChanged(function(user) {
 function logout(){
 
   firebase.auth().signOut();
+  console.log("user logged out");
 }
 
 
+// $(document).ready(function(){
+//   $("#btnLogout").click(function(){
+//     $("#logoutDiv").hide();
+//   });
+//   // $("#show").click(function(){
+//   //   $("p").show();
+//   // });
+// }
+// );
 
 
 function login(){
@@ -54,17 +63,23 @@ function login(){
 
   var txtEmail = document.getElementById('email').value;
   var txtPass = document.getElementById('password').value;
+  console.log(txtEmail+" "+txtPass+" 1234");
 
-console.log(txtEmail+" "+txtPass+" 1234");
   firebase.auth().signInWithEmailAndPassword(txtEmail, txtPass).catch(function(error) {
+
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-console.log("user logged in");
+    console.log("login error msg");
 
     window.alert("Error : " + errorMessage);
-
+    //document.getElementById("logoutDiv").style.display = "none";
     // ...
   });
+  // display logout button on successful log in
+// if(errorMessage != null){
+//
+// }
+
 
 };
