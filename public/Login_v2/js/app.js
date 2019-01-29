@@ -11,35 +11,36 @@
   firebase.initializeApp(config);
 // getting elements
 
-const txtEmail = document.getElementById('email');
-const txtPass = document.getElementById('password');
-const btnLogin = document.getElementById('btnLogin');
-const btnLogout = document.getElementById('btnLogOut');
-const btnSignUp = document.getElementById('btnSignUp');
+var txtEmail = document.getElementById('email').value;
+var txtPass = document.getElementById('password').value;
+var btnLogin = document.getElementById('btnLogin');
+var btnLogout = document.getElementById('btnLogOut');
+var btnSignUp = document.getElementById('btnSignUp');
 
 // add login event
+console.log(txtEmail+" "+txtPass+" 1234");
 btnLogin.addEventListener('click', e => {
 //get email and password
-const email = txtEmail.value;
-const password = txtPass.value;
-const auth = firebase.auth();
+//var email = txtEmail.value;
+//var password = txtPass.value;
+//var auth = firebase.auth();
 
 // sign in
-const promise = firebase.auth().signInWithEmailAndPassword("firebase.lamia@gmail.com", "123456789");
+var promise = firebase.auth().signInWithEmailAndPassword(txtEmail, txtPass);
 promise.catch(e => console.log(e.message));
-
+console.log("reached signin");
 
 });
 
 //sign up function
 btnSignUp.addEventListener('click', e => {
 //get email and password
-const email = txtEmail.value;
-const password = txtPass.value;
-const auth = firebase.auth();
+//var email = txtEmail.value;
+//var password = txtPass.value;
+//var auth = firebase.auth();
 
 // sign in
-const promise = firebase.auth().createUserWithEmailAndPassword("firebase.lamia@gmail.com", "123456789");
+var promise = firebase.auth().createUserWithEmailAndPassword(txtEmail, txtPass);
 promise.catch(e => console.log(e.message));
 
 
