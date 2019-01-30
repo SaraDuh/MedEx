@@ -8,8 +8,21 @@ var config = {
 };
 firebase.initializeApp(config);
 
+function logout(){
+
+  firebase.auth().signOut();
+  console.log("user logged out");
+  window.location = '/Login_v2/index.html';
+}
+
+
+
 var root = firebase.database().ref().child("users");
 var counter = 0;
+
+
+
+
 root.on("child_added", snap => {
 
   // alert(snap.val());
