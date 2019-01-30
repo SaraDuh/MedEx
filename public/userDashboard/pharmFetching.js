@@ -15,27 +15,27 @@ function logout(){
   window.location = '/Login_v2/index.html';
 }
 
-
-
-var root = firebase.database().ref().child("users");
+var root = firebase.database().ref().child("Orders").child("-LXPTTKMEZxMw-yrXpSh").child("Order Info");
+// window.alert(root);
 var counter = 0;
 
+root.on("value", snap => {
+  // window.alert(snap);
 
-
-
-root.on("child_added", snap => {
-  var role = snap.child("Role").val();
-  if (role=="Patient") {
-    counter++;
   var MRN = snap.child("MRN").val();
-  var Name = snap.child("Name").val();
-  var Gender = snap.child("Gender").val();
+  var OrderDate = snap.child("Order Date").val();
+  var OrderStatus = snap.child("Order Status").val();
+  var MRN = snap.child("MRN").val();
+
+  // var MRN = snap.child("MRN").val();
+  // var Name = snap.child("Name").val();
+  // var Gender = snap.child("Gender").val();
   var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
-  +Name+'</span></td><td><span class="product">'+Gender+'</span></td><td><a href="/patientProfile.html?MRN='+MRN
-  +'"><span style="background: #00B2F4" class="badge badge-complete">Patient Profile</span></a></td></tr>';
+  +OrderDate+'</span></td><td><span class="product">'+OrderStatus+'</span></td><td><a onclick="" >'
+  +'<span style="background: #00B2F4" class="badge badge-complete">Approve</span></a></td></tr>';
 
    $("#tableBody").append(HTMLtxt);
- }
+
 });
 
         // jQuery(document).ready(function($) {
