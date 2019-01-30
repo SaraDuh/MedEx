@@ -15,7 +15,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in.
 
     var user = firebase.auth().currentUser;
-    window.location = '/ElaAdmin-master/index.html';
+    window.location = '/userDashboard/dashboard.html';
     if(user != null){
 
       // var email_id = user.email;
