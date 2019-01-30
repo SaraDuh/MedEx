@@ -15,7 +15,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in.
 
     var user = firebase.auth().currentUser;
-    window.location = '/userDashboard/dashboard.html';
+    //window.location = '/userDashboard/dashboard.html';
     if(user != null){
 
       // var email_id = user.email;
@@ -42,7 +42,6 @@ function logout(){
 
   firebase.auth().signOut();
   console.log("user logged out");
-  window.location = '/index.html';
 }
 
 
@@ -84,3 +83,22 @@ function login(){
 
 
 };
+
+function resetPassword(){
+var txtEmail = document.getElementById('email').value;
+  firebase.auth().sendPasswordResetEmail(txtEmail).then(function(){
+    alert('Password Reset Email has been sent!');
+  }).catch(function(error){
+
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    if(errorCode == 'auth/invalid-email'){
+      alert(errorMessage);
+    }else if(errorCode == 'auth/user-not-found'){
+      alert(errorMessage);
+    }
+    console.log(error);
+  });
+
+}
