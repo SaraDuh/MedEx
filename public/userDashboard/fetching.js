@@ -9,24 +9,28 @@ var config = {
 firebase.initializeApp(config);
 
 var root = firebase.database().ref().child("users");
-var counter=0;
+var counter = 0;
 root.on("child_added", snap => {
 
-  alert(snap.val());
-  //
-  // var role = snap.child("Role").val();
-  // if (role="Patient") {
-  //   counter++;
-  // var MRN = snap.child("MRN").val();
-  // var Name = snap.child("Name").val();
-  // var Gender = snap.child("Gender").val();
-  //
-  //  $.("tableBody").appeand(
-  // '<tr><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
-  //  +Name+'</span></td><td><span class="product">'+Gender+'</span></td><td><a href="/patientProfile.html?'+MRN
-  //  +'"><span style="background: #00B2F4" class="badge badge-complete">Patient Profile</span></a></td></tr>')}
+  // alert(snap.val());
 
-})
+  var role = snap.child("Role").val();
+  // console.log(role);
+  if (role=="Patient") {
+    counter++;
+  var MRN = snap.child("MRN").val();
+  var Name = snap.child("Name").val();
+  var Gender = snap.child("Gender").val();
+  var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
+  +Name+'</span></td><td><span class="product">'+Gender+'</span></td><td><a href="/patientProfile.html?'+MRN
+  +'"><span style="background: #00B2F4" class="badge badge-complete">Patient Profile</span></a></td></tr>';
+
+   $("#tableBody").append(HTMLtxt);
+ }
+ else {
+snap.m
+ }
+});
         jQuery(document).ready(function($) {
             "use strict";
             // Pie chart flotPie1
