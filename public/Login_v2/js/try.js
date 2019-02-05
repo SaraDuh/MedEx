@@ -15,11 +15,25 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in.
 
     var user = firebase.auth().currentUser;
-    window.location = '/userDashboard/dashboard.html';
+    var role;
+    console.log(user.uid);
+    // console.log(user);
     if(user != null){
+      var root = firebase.database().ref().child("webUsers");
+      root.once("value",function(snap) {
+        console.log(snap.val());
+        // console.log(snap.child("Role").val());
+          role = snap.child(user.uid).child("Role").val();
+          // console.log(txtEmail);
+          // console.log(snap.child("Email").val());
+          if (role=="Physician") {
+          window.location = '/userDashboard/dashboard.html';}
+          else if (role=="Pharmacist") {
+          window.location = '/userDashboard/PharmDashboard.html';}
 
-      // var email_id = user.email;
-      // document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+      });
+      // role = snap.child("Role").val();
+
 
       //console.log(firebaseUser);
       console.log("user logged in");
@@ -44,23 +58,7 @@ function logout(){
   console.log("user logged out");
   window.location = '/index.html';
 }
-
-
-// $(document).ready(function(){
-//   $("#btnLogout").click(function(){
-//     $("#logoutDiv").hide();
-//   });
-//   // $("#show").click(function(){
-//   //   $("p").show();
-//   // });
-// }
-// );
-
-
 function login(){
-
-
-
 
   var txtEmail = document.getElementById('email').value;
   var txtPass = document.getElementById('password').value;
@@ -77,10 +75,6 @@ function login(){
     //document.getElementById("logoutDiv").style.display = "none";
     // ...
   });
-  // display logout button on successful log in
-// if(errorMessage != null){
-//
-// }
 
 
 };
