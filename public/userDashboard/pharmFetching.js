@@ -32,11 +32,10 @@ console.log(Object.keys(snap.val()).length);
 
 var AllOrders = snap.val(); // json Object of all orders from firebase
 var orderedPres = Object.keys(AllOrders); // array of all the orders
-var numOfPres = Object.keys(AllOrders).length; 
+var numOfPres = Object.keys(AllOrders).length;
 
 for(var i=0; i<numOfPres; i++){
-  var k = orderedPres[i];
-  console.log(k);
+  // orderedPres[i];
    // jsonObjects[k].Prescriptions;
 
 }
