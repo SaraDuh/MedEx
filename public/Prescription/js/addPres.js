@@ -1,4 +1,4 @@
-// this document creates a new prescription node and adds 
+// this document creates a new prescription node and adds
 var config = {
   apiKey: "AIzaSyDQLxQEkY_lbpnQQi_JS8MXqCxgMIZr6eY",
   authDomain: "medex-e6e1f.firebaseapp.com",
@@ -12,7 +12,19 @@ firebase.initializeApp(config);
 
 
 
+var getURLpara = function getUrlParameter(sParam){
+var pageURL = decodeURIComponent(window.location.search.substring(1)),
+URLvars = pageURL.split('&'),
+parameterName,
+i;
+for (i=0; i < URLvars.length; i++){
+  parameterName = URLvars[i].split('=');
+  if(parameterName[0] === sParam){
+    return parameterName[1] === undefined ? true : parameterName[1]; }
+}}
 
+var MRNurl = getURLpara("MRN");
+console.log(MRNurl);
 
 
 
@@ -43,7 +55,7 @@ for(var i=0; i<keys.length; i++){
   var pres = nodeKeys[k].Prescriptions;
 
   var mrn = nodeKeys[k].MRN;
-  if(mrn == "112233"){
+  if(mrn == MRNurl){
     //console.log(getNumOfPrescription(pres));
     //console.log(mrn);
     //console.log(mrn);
@@ -76,6 +88,9 @@ function getNumOfPrescription(pres){
   return Object.keys(pres).length;
 
 };
+
+
+
 
 
 $('#btnAdd').click(function(){
