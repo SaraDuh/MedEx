@@ -15,7 +15,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in.
 
     var user = firebase.auth().currentUser;
-    window.location = '/userDashboard/dashboard.html';
+    // so after adding the prescription it does not route us back here
+    //window.location = '/userDashboard/dashboard.html';
     if(user != null){
 
       // var email_id = user.email;
