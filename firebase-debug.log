@@ -52,3 +52,28 @@
 [debug] [2019-01-30T16:30:11.676Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2019-02-18T18:02:13.622Z] ----------------------------------------------------------------------
+[debug] [2019-02-18T18:02:13.625Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-02-18T18:02:13.625Z] CLI Version:   6.3.0
+[debug] [2019-02-18T18:02:13.625Z] Platform:      darwin
+[debug] [2019-02-18T18:02:13.625Z] Node Version:  v10.15.0
+[debug] [2019-02-18T18:02:13.629Z] Time:          Mon Feb 18 2019 21:02:13 GMT+0300 (Arabian Standard Time)
+[debug] [2019-02-18T18:02:13.629Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-18T18:02:13.642Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-18T18:02:13.643Z] > authorizing via signed-in user
+[debug] [2019-02-18T18:02:13.643Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
+[debug] [2019-02-18T18:02:13.645Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
+
+[debug] [2019-02-18T18:02:15.064Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-18T18:02:15.067Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
+ 
+[debug] [2019-02-18T18:02:16.192Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Mia/Documents/GitHub/MedEx'...
+[info] 
+[debug] [2019-02-18T18:02:16.196Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
+ 
+[debug] [2019-02-18T18:02:16.940Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
