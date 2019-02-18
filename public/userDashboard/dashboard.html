@@ -68,6 +68,19 @@
         #cellPaiChart{
             height: 160px;
         }
+        #myInput {
+          /* background-image: url('/css/searchicon.png'); */
+          background-position: 10px 12px;
+          background-repeat: no-repeat;
+          width: 100%;
+          font-size: 16px;
+          padding: 12px 20px 12px 40px;
+          border: 1px solid #ddd;
+          margin-bottom: 12px;
+        }
+        *{
+          box-sizing: border-box;
+        }
 
     </style>
 </head>
@@ -177,6 +190,7 @@
                                     </div> <!-- /.table-stats -->
                                 </div>
                             </div> <!-- /.card -->
+                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by MRN.." title="Type in a MRN">
                         </div>  <!-- /.col-lg-8 -->
                     </div>
                 </div>

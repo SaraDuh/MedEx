@@ -15,24 +15,46 @@ function logout(){
   window.location = '/Login_v2/index.html';
 }
 
-var root = firebase.database().ref().child("Orders").child("-LXPTTKMEZxMw-yrXpSh").child("Order Info");
+var root = firebase.database().ref().child("Prescription Orders");
 // window.alert(root);
 var counter = 0;
-
+var numOfMeds = 0;
+var MRN,Status;
+//
+// var x = root.push().key;
+// console.log(x);
 root.on("value", snap => {
-  // window.alert(snap);
 
-  var MRN = snap.child("MRN").val();
-  var OrderDate = snap.child("Order Date").val();
-  var OrderStatus = snap.child("Order Status").val();
-  var MRN = snap.child("MRN").val();
 
-  // var MRN = snap.child("MRN").val();
-  // var Name = snap.child("Name").val();
-  // var Gender = snap.child("Gender").val();
+console.log(snap.val());
+console.log(Object.keys(snap.val()));
+console.log(Object.keys(snap.val()).length);
+
+var AllOrders = snap.val(); // json Object of all orders from firebase
+var orderedPres = Object.keys(AllOrders); // array of all the orders
+var numOfPres = Object.keys(AllOrders).length; 
+
+for(var i=0; i<numOfPres; i++){
+  var k = orderedPres[i];
+  console.log(k);
+   // jsonObjects[k].Prescriptions;
+
+}
+
+  counter++;
+
+  root.once('child_added').then(function(ssnap){
+    console.log(ssnap.val());
+
+    numOfMeds++;
+    console.log(numOfMeds);
+     MRN = ssnap.child("MRN").val();
+     Status = ssnap.child("Order Status").val();
+   });
+
   var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
-  +OrderDate+'</span></td><td><span class="product">'+OrderStatus+'</span></td><td><a onclick="" >'
-  +'<span style="background: #00B2F4" class="badge badge-complete">Approve</span></a></td></tr>';
+  +numOfMeds+'</span></td><td><span class="product">'+Status+'</span></td><td><a onclick="manageOrder">'
+  +'<span style="background: #00B2F4" class="badge badge-complete">Approve/Deny</span></a></td></tr>';
 
    $("#tableBody").append(HTMLtxt);
 

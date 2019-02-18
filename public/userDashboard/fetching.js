@@ -30,7 +30,7 @@ root.on("child_added", snap => {
   var MRN = snap.child("MRN").val();
   var Name = snap.child("Name").val();
   var Gender = snap.child("Gender").val();
-  var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
+  var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td id="MRN'+counter+'">'+MRN+'</td><td><span class="name">'
   +Name+'</span></td><td><span class="product">'+Gender+'</span></td><td><a href="/patientProfile.html?MRN='+MRN
   +'"><span style="background: #00B2F4" class="badge badge-complete">Patient Profile</span></a></td></tr>';
 
@@ -38,6 +38,36 @@ root.on("child_added", snap => {
  }
 });
 
+// function myFunction() {
+//     var input, filter, tb, tr, a, i, txtValue, j, arr[];
+//     input = document.getElementById("myInput");
+//     filter = input.value;
+//     tb = document.getElementById("tableBody");
+//     tr = tb.getElementsByTagName("tr");
+//     j = 0;
+//     arr = arr[tr.length];
+//     for (i = 1; i <= tr.length; i++) {
+//         // a = tr[i].getElementById("MRN")[0];
+//         var tdid = "MRN"+i;
+//         console.log(tdid);
+//         a = document.getElementById(tdid);
+//         console.log(a);
+//         // txtValue = a.innerText;
+//         arr[i-1] = a.innerText;
+//         // console.log(txtValue.toUpperCase().indexOf(filter));
+//         // if (txtValue.indexOf(j++) == filter) {
+//         var result = arr.filter(function(input){
+//           return input;
+//           console.log(arr);
+//         })
+//         //   if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//         //     tr[i-1].style.display = "none";
+//         // } else {
+//         //     tr[i-1].style.display = "";
+//         // }
+//     }
+// }
+//
         // jQuery(document).ready(function($) {
         //     "use strict";
         //     // Pie chart flotPie1

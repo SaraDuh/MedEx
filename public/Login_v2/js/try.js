@@ -16,38 +16,23 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     var user = firebase.auth().currentUser;
     var role;
-    console.log(user.uid);
-    // console.log(user);
+    // console.log(user.uid);
     if(user != null){
       var root = firebase.database().ref().child("webUsers");
       root.once("value",function(snap) {
-        console.log(snap.val());
-        // console.log(snap.child("Role").val());
           role = snap.child(user.uid).child("Role").val();
-          // console.log(txtEmail);
-          // console.log(snap.child("Email").val());
           if (role=="Physician") {
           window.location = '/userDashboard/dashboard.html';}
           else if (role=="Pharmacist") {
           window.location = '/userDashboard/PharmDashboard.html';}
 
       });
-      // role = snap.child("Role").val();
-
-
-      //console.log(firebaseUser);
       console.log("user logged in");
-      //document.getElementById("logoutDiv").style.display = "flex";
       }else{
       console.log("not logged in");
+      // window.location = '/index.html';
+
     }
-
-
-    // No user is signed in.
-
-    // document.getElementById("user_div").style.display = "none";
-    // document.getElementById("login_div").style.display = "block";
-
   }
 });
 
