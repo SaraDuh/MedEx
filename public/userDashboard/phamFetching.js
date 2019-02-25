@@ -17,47 +17,101 @@ function logout(){
 
 var root = firebase.database().ref().child("Prescription Orders");
 // window.alert(root);
-var counter = 0;
-var numOfMeds = 0;
-var MRN,Status;
-//
-// var x = root.push().key;
-// console.log(x);
+
+// var MRN,Status;
+var orderedPres
 root.on("value", snap => {
-
-
-console.log(snap.val());
-console.log(Object.keys(snap.val()));
-console.log(Object.keys(snap.val()).length);
+// console.log(snap.val());
+// console.log(Object.keys(snap.val()));
+// console.log(Object.keys(snap.val()).length);
 
 var AllOrders = snap.val(); // json Object of all orders from firebase
-var orderedPres = Object.keys(AllOrders); // array of all the orders
+ orderedPres = Object.keys(AllOrders); // array of all the orders
 var numOfPres = Object.keys(AllOrders).length;
-
+var HTMLtxt = "";
+var counter = 1;
 for(var i=0; i<numOfPres; i++){
-  // orderedPres[i];
-   // jsonObjects[k].Prescriptions;
+  var numOfMeds = 0;
+ var ref = root.child(orderedPres[i]);
+ var MRN,Status;
+ ref.on("child_added", Med => {
+   numOfMeds++;
+   MRN = Med.child("MRN").val();
+   Status = Med.child("OrderStatus").val();
+// var isCart = Med.child("isCart").val();
+});
+ HTMLtxt += '<tr id ="'+counter+'"><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
+ +numOfMeds+'</span></td><td><span class="product">'+Status+'</span></td><td><a onclick="manageOrder('
+ +counter+','+i+','+counter+')"><span style="background: #00B2F4" class="badge badge-complete">Manage Order</span></a></td></tr>';
+counter++;
+// $("#tableBody").append(HTMLtxt);
+document.getElementById("tableBody").innerHTML = HTMLtxt;
+}
+
+});
+
+
+function manageOrder(rowID,indexOfOrder,counter){
+  for(var j=1; j<=counter; j++){ // to remove hilight of all rows
+    document.getElementById(j).style.backgroundColor = '#FFFFFF	';}
+    document.getElementById(rowID).style.backgroundColor='#BCD4EC'; // to hilight the specified row
+
+
+var div = document.getElementById("orderDescription");
+if (div.style.display==='block'){ div.style.display='none';}
+if (div.style.display==='none'){ div.style.display='block';}
+
+var reff = root.child(orderedPres[indexOfOrder]);
+ var HtmlDetails;
+ $("#MedBody").empty();
+ reff.on("child_added", Med => {
+   var Frequency,Dose,Name,NextRefillDate,Quantitiy,Details,MedStatus,MedMRN;
+
+   Frequency = Med.child(" Frequency").val();
+   Dose = Med.child("Dose").val();
+   Name = Med.child("Name").val();
+   NextRefillDate = Med.child("NextRefillDate").val();
+   Quantitiy = Med.child("Quantitiy").val();
+   Details = Med.child("Related Details").val();
+   // Status = Med.child("OrderStatus").val();
+
+  HtmlDetails = '<tr><td class="serial">'+Name+'</td><td><div>'+Frequency+'</div><div>'+Dose+'</div><div>'
++NextRefillDate+'</div><div>'+Quantitiy+'</div><div>'+Details+'</div></td><td>'
++'<a onclick="Approve(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\')" class="w3-btn w3-green"><span>Approve</span></a>&nbsp;&nbsp;'
++'<a onclick="Deny(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\')" class="w3-btn w3-red"><span>Deny</span></a></td>';
+$("#MedBody").append(HtmlDetails); // + '\',\''+MedArray
+}); // ref on Med
+} // manageOrder method
+
+
+function Approve(MedName,ordPres){
+var PressRef = root.child(ordPres);
+var Med;
+  PressRef.orderByChild("Name").equalTo(MedName).on("child_added", function(snapshot) {
+    Med = snapshot;});
+
+var MedRef = root.child(ordPres).child(Med.key);
+MedRef.update(
+{ OrderStatus: "Approved" });
 
 }
 
-  counter++;
+function Deny(MedName,ordPres){
+  var PressRef = root.child(ordPres);
+  var Med;
+    PressRef.orderByChild("Name").equalTo(MedName).on("child_added", function(snapshot) {
+      Med = snapshot;});
 
-  root.once('child_added').then(function(ssnap){
-    console.log(ssnap.val());
+  var MedRef = root.child(ordPres).child(Med.key);
+  MedRef.update(
+  { OrderStatus: "Denied" });
+  // subtitute();
+}
 
-    numOfMeds++;
-    console.log(numOfMeds);
-     MRN = ssnap.child("MRN").val();
-     Status = ssnap.child("Order Status").val();
-   });
+function subtitute() {
 
-  var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
-  +numOfMeds+'</span></td><td><span class="product">'+Status+'</span></td><td><a onclick="manageOrder">'
-  +'<span style="background: #00B2F4" class="badge badge-complete">Approve/Deny</span></a></td></tr>';
+}
 
-   $("#tableBody").append(HTMLtxt);
-
-});
 
         // jQuery(document).ready(function($) {
         //     "use strict";
