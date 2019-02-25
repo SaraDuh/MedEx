@@ -25,7 +25,8 @@ firebase.auth().onAuthStateChanged(function(user) {
           window.location = '/userDashboard/dashboard.html';}
           else if (role=="Pharmacist") {
           window.location = '/userDashboard/PharmDashboard.html';}
-
+          else if (role=="Admin") {
+          window.location = '/userDashboard/AdminDashboard.html';}
       });
       console.log("user logged in");
       }else{

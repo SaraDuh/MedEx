@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Physician Dashboard</title>
+    <title>Admin Dashboard</title>
     <meta name="description" content="">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
@@ -75,14 +75,17 @@
           border: 1px solid #ddd;
           margin-bottom: 12px;
         }
+  .add{
+        display: table-row;
+  }
         *{
           box-sizing: border-box;
         }
 
     </style>
 </head>
-<script src="fetching.js">  </script>
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel">
@@ -92,7 +95,7 @@
                     <li class="active">
                         <a><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
-                    <li class="menu-title"><a href="dashboard.html" >Patients</a></li>
+                    <li class="menu-title"><a href="AdminDashboard.html" >Drivers</a></li>
                     <li class="menu-title"><a href="#" >Prescriptions</a></li>
                     <li class="menu-title"><a href="#" >Extras</a></li>
                     <li class="menu-title"><a href="#" >Extras</a></li>
@@ -158,7 +161,7 @@
         <!-- Table -->
         <div class="content">
             <!-- Search Bar -->
-            <input type="text" id="SearchBarInput" onfocus="this.value=''" placeholder="Search by MRN.." title="Type in a MRN">
+            <input type="text" id="SearchBarInput" onfocus="this.value=''" placeholder="Search.." title="Type in a MRN">
 
             <div class="animated fadeIn">
                 <div class="clearfix"></div>
@@ -166,10 +169,16 @@
                 <div class="orders">
                     <div class="row">
                         <div class="col-xl-12">
+
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="box-title">Patients </h4>
+                                    <h4 class="box-title">Drivers
+                                      <a href="/AddDriverForm/index.html" style="background: #00B23C; float:right;" class="badge card-body-button">Add Drivers</a>
+</h4>
+                                    <!-- <a href="#"><span style="background: #00B2F4; float:right; display:inline;" class="badge card-body-button">Add Drivers</span></a> -->
+
                                 </div>
+
                                 <div class="card-body--">
                                     <div class="table-stats order-table ov-h">
                                         <table class="table ">
@@ -177,9 +186,11 @@
                                                 <tr>
                                                     <th class="serial">#</th>
                                                     <!-- <th class="avatar">Avatar</th> -->
-                                                    <th>MRN</th>
                                                     <th>Name</th>
-                                                    <th>Gender</th>
+                                                    <th>Area</th>
+
+                                                    <th>Phone Number</th>
+                                                    <th>Email</th>
                                                     <th>Profile's</th>
                                                 </tr>
                                             </thead>
@@ -211,7 +222,7 @@
                 </div>
                 <!-- /#event-modal -->
                 <!-- Modal - Calendar - Add Category -->
-                <div class="modal fade none-border" id="add-category">
+                <!-- <div class="modal fade none-border" id="add-category">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -245,7 +256,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             <!-- /#add-category -->
             </div>
             <!-- .animated -->
@@ -277,5 +288,6 @@
     });
 
     </script>
+    <script src="js/AdminFetching.js">  </script>
 </body>
 </html>

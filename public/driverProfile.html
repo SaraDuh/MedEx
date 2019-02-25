@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Page Title -->
+    <title>MedEx</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<!-- Firebase & jQuery links -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+<!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
+<script src="driverProfile.js"></script>
+
+<body id="body">
+    <!-- Preloader Starts -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Header Area Starts -->
+     <header class="header-area">
+        <div id="header" id="home">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                <!-- <div id="logo">
+                    <a href="index.html"><img src="assets/images/logo/logo.png" alt="" title="" /></a>
+                </div> -->
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><img src="assets/images/logo/logo.png" alt=""></li>
+                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <!-- <li><a href="departments.html">Services</a></li> -->
+                        <li><a href="doctors.html">About us</a></li>
+
+                        <li><a href="Login_v2/index.html">Login</a></li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Area End -->
+
+
+<section class="patient-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-top text-center">
+                    <h3>Drivers are saying</h3>
+                    <p>Green above he cattle god saw day multiply under fill in the cattle fowl a all, living, tree word link available in the service for subdue fruit.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="single-patient mb-4">
+                    <img src="assets/images/patient2.png" alt=""> Profile
+                    <h3 id="name"></h3>
+                    <!-- <h5>add patient info in here</h5> -->
+                    <!-- <p class="pt-3">Elementum libero hac leo integer. Risus hac road parturient feugiat. Litora cursus hendrerit bib elit Tempus inceptos posuere metus.</p> -->
+                    <div class="col-lg-5 offset-lg-1 align-self-center">
+                            <!-- <h3 class="mb-5">Profile</h3> -->
+                                <div class="form-group" id="profileDiv">
+                                  <!-- fetched by js -->
+                              </div>
+                    </div>
+                    <div class = "col-md-12 offset-xl-1">
+              <!-- <script>
+              var link = getMRN();
+              </script> -->
+                              <a id="a" href="" onclick="getMRN()" class="template-btn mt-3">Edit Profile</a>
+
+                            <!-- <a href="" class="template-btn mt-3">Add Prescription</a> -->
+                    </div>
+                </div>
+              </div>
+
+        </div>
+
+
+</section>
+
+
+<footer class="footer-area section-padding">
+    <div class="footer-widget">
+
+    </div>
+</footer>
+<!-- Footer Area End -->
+
+
+<!-- Javascript -->
+<script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+<script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+<script src="assets/js/vendor/wow.min.js"></script>
+<script src="assets/js/vendor/owl-carousel.min.js"></script>
+<script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
+<script src="assets/js/vendor/jquery.nice-select.min.js"></script>
+<script src="assets/js/vendor/superfish.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- <script>
+var database = firebase.database();
+
+// var userId = firebase.auth().currentUser.uid;
+return firebase.database().ref('/users/').then(function(snapshot) {
+  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+  window.alert(username)
+});
+</script> -->
+
+<app-root></app-root>
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script>
+</body>
+</html>
