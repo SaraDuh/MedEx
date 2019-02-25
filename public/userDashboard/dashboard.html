@@ -68,10 +68,7 @@
         #cellPaiChart{
             height: 160px;
         }
-        #myInput {
-          /* background-image: url('/css/searchicon.png'); */
-          background-position: 10px 12px;
-          background-repeat: no-repeat;
+        #SearchBarInput{
           width: 100%;
           font-size: 16px;
           padding: 12px 20px 12px 40px;
@@ -160,7 +157,9 @@
         <!-- /#header -->
         <!-- Table -->
         <div class="content">
-            <!-- Animated -->
+            <!-- Search Bar -->
+            <input type="text" id="SearchBarInput" onfocus="this.value=''" placeholder="Search by MRN.." title="Type in a MRN">
+
             <div class="animated fadeIn">
                 <div class="clearfix"></div>
                 <!-- Orders -->
@@ -190,7 +189,7 @@
                                     </div> <!-- /.table-stats -->
                                 </div>
                             </div> <!-- /.card -->
-                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by MRN.." title="Type in a MRN">
+                            <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by MRN.." title="Type in a MRN"> -->
                         </div>  <!-- /.col-lg-8 -->
                     </div>
                 </div>
@@ -266,6 +265,17 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="assets/js/init/fullcalendar-init.js"></script>
+    <script>
+    //search bar toggle
+    $(document).ready(function(){
+      $("#SearchBarInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#tableBody tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
 
+    </script>
 </body>
 </html>

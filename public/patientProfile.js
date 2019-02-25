@@ -7,7 +7,6 @@ var config = {
   messagingSenderId: "1006108228892"
 };
 firebase.initializeApp(config);
-
 // get argument url
 var getURLpara = function getUrlParameter(sParam){
 var pageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -43,7 +42,10 @@ root.on("child_added", snap => {
  }
 });
 
-
+function getMRN(){
+  console.log(MRNurl);
+   document.getElementById("a").href="Prescription/AddPrescriptionForm.html?MRN="+MRNurl;
+}
 
 // $("#body").ready(function(){
 //   alert(getURLpara("MRN"));
