@@ -93,7 +93,7 @@ var Med;
 var MedRef = root.child(ordPres).child(Med.key);
 MedRef.update(
 { OrderStatus: "Approved" });
-
+alert("Prescriped "+MedName+" is successfully Approved");
 }
 
 function Deny(MedName,ordPres){
@@ -105,7 +105,12 @@ function Deny(MedName,ordPres){
   var MedRef = root.child(ordPres).child(Med.key);
   MedRef.update(
   { OrderStatus: "Denied" });
+  alert("Prescriped "+MedName+" is Denied");
+var answer  = confirm("Would you like to subtitute the denied medicine to another on?");
+if (answer){
   // subtitute();
+}
+else {}
 }
 
 function subtitute() {
