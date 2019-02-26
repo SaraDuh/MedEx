@@ -114,7 +114,7 @@ root.push({
 
 //TO DO: add second medication
 // add another med (to the same) prescription
-window.location = "///userDashboard/AdminDashboard.html";
-
+// window.location = "";
+window.location = "/userDashboard/AdminDashboard.html"
 
 });

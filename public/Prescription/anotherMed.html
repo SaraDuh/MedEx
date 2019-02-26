@@ -155,15 +155,30 @@
 <!-- <script src="js/app.js"></script> -->
 <script src="js/try.js"></script>
 <script>
+
+var getURLpara = function getUrlParameter(sParam){
+var pageURL = decodeURIComponent(window.location.search.substring(1)),
+URLvars = pageURL.split('&'),
+parameterName,
+i;
+for (i=0; i < URLvars.length; i++){
+  parameterName = URLvars[i].split('=');
+  if(parameterName[0] === sParam){
+    return parameterName[1] === undefined ? true : parameterName[1]; }
+}}
+
+var MRNurl = getURLpara("MRN");
+console.log(MRNurl);
+
 function redirect(){
 
-  window.location = "AddMedForm.html"
+  window.location = "AddMedForm.html?MRN="+MRNurl;
 
 }
 function CancelRedirect() {
 
   //TO DO : send mrn through link
-  window.location = '/patientProfile.html'
+  window.location = '/userDashboard/dashboard.html'
 }
 </script>
 </body>

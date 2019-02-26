@@ -113,7 +113,7 @@ pref.push({
 
 //TO DO: add second medication
 // add another med (to the same) prescription
-window.location = "anotherMed.html";
-
+window.location = "anotherMed.html?MRN="+MRNurl;
+console.log(MRNurl);
 
 });
