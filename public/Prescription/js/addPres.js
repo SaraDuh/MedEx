@@ -98,18 +98,24 @@ $('#btnAdd').click(function(){
 
   var pref = root.child(parent+"/"+"Prescriptions/PR"+(counter+1));
   //console.log(pref);
+  pref.set({
+    RX: Math.floor((Math.random() * 1000000) + 1)
+    //yrefill:$('#yrefill').val(),
 
+  });
 pref.push({
-  mdName:$('#mdName').val(),
-  doze:$('#doze').val(),
-  frequency:$('#frequency').val(),
+  Name:$('#mdName').val(),
+  Doze:$('#doze').val(),
+  Frequency:$('#frequency').val(),
   Quantity:$('#Quantity').val(),
-  dts: $('#dets').val(),
+  RelatedDetails: $('#dets').val(),
   Refill: $("input[name='refill']:checked").val(),
   nextRefillDate: $('#date').val()
   //yrefill:$('#yrefill').val(),
 
 });
+
+
 
 //TO DO: add second medication
 // add another med (to the same) prescription
