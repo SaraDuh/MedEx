@@ -89,7 +89,25 @@ function getNumOfPrescription(pres){
 
 };
 
+function getTodaysDate(){
+  var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
 
+if (dd < 10) {
+  dd = '0' + dd;
+}
+
+if (mm < 10) {
+  mm = '0' + mm;
+}
+
+today = mm + '/' + dd + '/' + yyyy;
+//document.write(today);
+return today;
+
+};
 
 
 
@@ -99,10 +117,11 @@ $('#btnAdd').click(function(){
   var pref = root.child(parent+"/"+"Prescriptions/PR"+(counter+1));
   //console.log(pref);
   pref.set({
-    RX: Math.floor((Math.random() * 1000000) + 1)
-    //yrefill:$('#yrefill').val(),
-
+    RX: Math.floor((Math.random() * 1000000) + 1),
+    PrescriptionDate: getTodaysDate()
+    // ++++ TO DO : add prescribing physcian 
   });
+
 pref.push({
   Name:$('#mdName').val(),
   Doze:$('#doze').val(),
