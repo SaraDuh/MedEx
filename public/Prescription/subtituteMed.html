@@ -59,21 +59,13 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
 					<span class="login100-form-title ">
-						Would you like to add another medicion for the patient ?
-
-
-							<!-- <img class="col-md-12" src="images/logo.png" /> -->
-
+						Would you like to subtitute the prescriped medication to another one?
 					</span>
 
 					<div  data-validate = "Valid email is: a@b.c">
             <p>
-
             </p>
-
 					</div>
-
-
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
@@ -81,7 +73,7 @@
 								<!-- //+++++++++++++ -->
 							<button id= "btnLogin" class="login100-form-btn" onclick="redirect()" type="button">
 									<!-- //+++++onclick="location.href='/ElaAdmin-master/index.html'"++++++++ -->
-								Add another medication
+								Subtitute medication
 							</button>
 						</div>
 					</div>
@@ -91,12 +83,10 @@
 								<!-- //+++++++++++++ -->
 							<button id= "btnLogin" class="login100-form-btn" onclick="CancelRedirect()" type="button">
 									<!-- //+++++onclick="location.href='/ElaAdmin-master/index.html'"++++++++ -->
-								Done!
+								No Need!
 							</button>
 						</div>
 					</div>
-
-
 				</form>
 			</div>
 		</div>
@@ -145,20 +135,8 @@ function redirect(){
 
 }
 function CancelRedirect() {
-	//document.getElementById("logoutDiv").style.display = "flex";
-	    var user = firebase.auth().currentUser;
-	    var role;
-	    if(user != null){
-	      var root = firebase.database().ref().child("webUsers");
-	      root.once("value",function(snap) {
-	          role = snap.child(user.uid).child("Role").val();
-	          if (role=="Physician") {
-	          window.location = '/userDashboard/dashboard.html';}
-	          else if (role=="Pharmacist") {
-	          window.location = '/userDashboard/PharmDashboard.html';}
-	      });}
-	  //TO DO : send mrn through link
-  // window.location = '/userDashboard/dashboard.html'
+  //TO DO : send mrn through link
+  window.location = '/userDashboard/pharmDashboard.html'
 }
 </script>
 </body>

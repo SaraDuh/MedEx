@@ -26,16 +26,24 @@ root.on("child_added", snap => {
   var MRN = snap.child("MRN").val();
   if (MRN == MRNurl) {
   var Name = snap.child("Name").val();
-  var Address = snap.child("Address").val();
   var Age = snap.child("Age").val();
-  var MH = snap.child("Medical History").val();
+  var MH = snap.child("MedicalHistory").val();
   var PhoneNo = snap.child("PhoneNo").val();
   var Gender = snap.child("Gender").val();
+  var AddressNode = snap.child("Address");
+  var PodtalCode = AddressNode.child("Postal Code").val();
+  var Address = AddressNode.child("BuildingNo").val()+", "
+  +AddressNode.child("AdditionalNo").val()+", "
+  +AddressNode.child("Street Name").val()+", "
+  +AddressNode.child("Neighborhood").val()+", "
+  +AddressNode.child("City").val()+", "
+  +AddressNode.child("BuildingNo").val()+".";
+
 
   var HTMLtxt = '<h3> Medical Record Number: </h3> <h4>'+MRN+
   '</h4><h3> Age </h3> <h4>'+Age+'</h4><h3> Gender </h3> <h4>'+Gender+
   '</h4><h3> Medical History </h3> <h4>'+MH+'</h4><h3> Phone Number </h3> <h4>'
-  +PhoneNo+'</h4><h3> Address </h3><h4>'+Address+'</h4>';
+  +PhoneNo+'</h4><h3> Address </h3><h4>'+Address+'</h4><h3> Postal Code </h3><h4>'+PodtalCode+'</h4>';
 
    $("#profileDiv").append(HTMLtxt);
    $("#name").append(Name);

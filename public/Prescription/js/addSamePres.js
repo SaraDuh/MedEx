@@ -8,8 +8,13 @@ var config = {
   messagingSenderId: "1006108228892"
 };
 firebase.initializeApp(config);
-
-
+var ROLE;
+  firebase.auth().onAuthStateChanged(function(user) {
+  if(user != null){
+    var root = firebase.database().ref().child("webUsers");
+    root.once("value",function(snap) {
+        ROLE = snap.child(user.uid).child("Role").val();
+console.log("ROLE: "+ROLE);
 
 
 var getURLpara = function getUrlParameter(sParam){
@@ -51,15 +56,27 @@ var keys = Object.keys(nodeKeys);
 
 for(var i=0; i<keys.length; i++){
   var k = keys[i];
+  var pres;
 
-  var pres = nodeKeys[k].Prescriptions;
+  if( ROLE=="Physician") {
+     pres = nodeKeys[k].Prescriptions;}
+  else if (ROLE=="Pharmacist") {
+     pres = nodeKeys[k].Orders; }
+
+
 
   var mrn = nodeKeys[k].MRN;
   if(mrn == MRNurl){
     //console.log(getNumOfPrescription(pres));
     //console.log(mrn);
     //console.log(mrn);
-    foundpreskey = root.child(keys[i]).child("Prescriptions");
+
+    if( ROLE=="Physician") {
+     foundpreskey = root.child(keys[i]).child("Prescriptions"); }
+    else if (ROLE=="Pharmacist") {
+     foundpreskey = root.child(keys[i]).child("Orders"); }
+
+    // foundpreskey = root.child(keys[i]).child("Prescriptions");
     console.log(keys[i]);
 
  //yes = firebase.database().ref().child(foundpreskey.key);
@@ -93,7 +110,18 @@ function getNumOfPrescription(pres){
 $('#btnAdd').click(function(){
 
     // find the user by their mrn
-  var pref = root.child(parent+"/"+foundpreskey+"/PR"+(counter));
+
+
+  var pref;
+  if( ROLE=="Physician") {
+    pref = root.child(parent+"/"+foundpreskey+"/PR"+(counter));
+  }
+  else if (ROLE=="Pharmacist") {
+    // pref = root.child(parent+"/"+foundpreskey";
+    pref = root.child(parent+"/"+foundpreskey+"/ORD"+(counter));
+  }
+
+  // = root.child(parent+"/"+foundpreskey+"/PR"+(counter));
   console.log(pref);
 
 pref.push({
@@ -114,3 +142,7 @@ window.location = "anotherMed.html?MRN="+MRNurl;
 
 
 });
+
+}); //     root.once("value",function(snap)
+} //   if(user != null)
+}); // onAuthStateChanged

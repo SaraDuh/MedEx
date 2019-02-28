@@ -10,6 +10,14 @@ var config = {
 firebase.initializeApp(config);
 //edit this later
 
+var ROLE;
+  firebase.auth().onAuthStateChanged(function(user) {
+  if(user != null){
+    var root = firebase.database().ref().child("webUsers");
+    root.once("value",function(snap) {
+        ROLE = snap.child(user.uid).child("Role").val();
+console.log("ROLE: "+ROLE);
+
 
 
 var getURLpara = function getUrlParameter(sParam){
@@ -52,14 +60,25 @@ var keys = Object.keys(nodeKeys);
 for(var i=0; i<keys.length; i++){
   var k = keys[i];
 
-  var pres = nodeKeys[k].Prescriptions;
+  var pres;
+  if( ROLE=="Physician") {
+     pres = nodeKeys[k].Prescriptions;}
+  else if (ROLE=="Pharmacist") {
+     pres = nodeKeys[k].Orders; }
+
 
   var mrn = nodeKeys[k].MRN;
   if(mrn == MRNurl){
     //console.log(getNumOfPrescription(pres));
     //console.log(mrn);
     //console.log(mrn);
-    foundpreskey = root.child(keys[i]).child("Prescriptions");
+
+        if( ROLE=="Physician") {
+         foundpreskey = root.child(keys[i]).child("Prescriptions"); }
+        else if (ROLE=="Pharmacist") {
+         foundpreskey = root.child(keys[i]).child("Orders"); }
+
+    // foundpreskey = root.child(keys[i]).child("Prescriptions");
     console.log(keys[i]);
 
  //yes = firebase.database().ref().child(foundpreskey.key);
@@ -114,12 +133,22 @@ return today;
 $('#btnAdd').click(function(){
 
 
-  var pref = root.child(parent+"/"+"Prescriptions/PR"+(counter+1));
+
+
+    var pref;
+    if( ROLE=="Physician") {
+      pref = root.child(parent+"/"+"Prescriptions/PR"+(counter+1));
+    }
+    else if (ROLE=="Pharmacist") {
+       // pref = root.child(parent+"/"+"Orders/";
+       pref = root.child(parent+"/"+"Orders/ORD"+(counter+1));
+    }
+
   //console.log(pref);
   pref.set({
     RX: Math.floor((Math.random() * 1000000) + 1),
     PrescriptionDate: getTodaysDate()
-    // ++++ TO DO : add prescribing physcian 
+    // ++++ TO DO : add prescribing physcian
   });
 
 pref.push({
@@ -142,3 +171,8 @@ window.location = "anotherMed.html?MRN="+MRNurl;
 console.log(MRNurl);
 
 });
+
+
+}); //     root.once("value",function(snap)
+} //   if(user != null)
+}); // onAuthStateChanged

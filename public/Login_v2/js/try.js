@@ -50,13 +50,17 @@ function login(){
   var txtPass = document.getElementById('password').value;
   console.log(txtEmail+" "+txtPass+" 1234");
 
-  firebase.auth().signInWithEmailAndPassword(txtEmail, txtPass).catch(function(error) {
 
+
+  firebase.auth().signInWithEmailAndPassword(txtEmail, txtPass).catch(function(error) {
+    if ( (txtEmail===null) || (txtPass===null) ){
+      window.alert("Please fill the required fields"); }
+      console.log(txtEmail);
+      console.log(txtPass);
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log("login error msg");
-
     window.alert("Error : " + errorMessage);
     //document.getElementById("logoutDiv").style.display = "none";
     // ...

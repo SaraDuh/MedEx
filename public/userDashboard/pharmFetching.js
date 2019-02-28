@@ -32,17 +32,22 @@ var HTMLtxt = "";
 var counter = 1;
 for(var i=0; i<numOfPres; i++){
   var numOfMeds = 0;
- var ref = root.child(orderedPres[i]);
- var MRN,Status;
- ref.on("child_added", Med => {
-   numOfMeds++;
-   MRN = Med.child("MRN").val();
-   Status = Med.child("OrderStatus").val();
-// var isCart = Med.child("isCart").val();
+  var ref = root.child(orderedPres[i]);
+  var MRN,Status;
+  var arr = new Array();
+
+ref.on("child_added", Med => {
+  MRN = Med.child("MRN").val();
+  arr[numOfMeds] = Med.child("OrderStatus").val();
+  Status = Med.child("OrderStatus").val();
+  numOfMeds++;
 });
- HTMLtxt += '<tr id ="'+counter+'"><td class="serial">'+counter+'.</td><td>#'+MRN+'</td><td><span class="name">'
- +numOfMeds+'</span></td><td><span class="product">'+Status+'</span></td><td><a onclick="manageOrder('
- +counter+','+i+','+counter+')"><span style="background: #00B2F4" class="badge badge-complete">Manage Order</span></a></td></tr>';
+for(var l=1; l<arr.length; l++){ if (arr[l-1] != arr[l]) Status = arr[l-1]+"/"+arr[l];}
+
+ HTMLtxt += '<tr id ="'+counter+'"><td class="serial">'+counter
+ +'.</td><td><a style="color: black;" onclick="MedicalHistory('+counter+','+MRN+','+numOfPres+')">#'
+ +MRN+'</a></td><td><span class="name">'+numOfMeds+'</span></td><td><span class="product">'
+ +Status+'</span></td><td><a onclick="manageOrder('+counter+','+i+','+numOfPres+')"><span style="background: #00B2F4" class="badge badge-complete">Manage Order</span></a></td></tr>';
 counter++;
 // $("#tableBody").append(HTMLtxt);
 document.getElementById("tableBody").innerHTML = HTMLtxt;
@@ -51,15 +56,16 @@ document.getElementById("tableBody").innerHTML = HTMLtxt;
 });
 
 
-function manageOrder(rowID,indexOfOrder,counter){
-  for(var j=1; j<=counter; j++){ // to remove hilight of all rows
-    document.getElementById(j).style.backgroundColor = '#FFFFFF	';}
-    document.getElementById(rowID).style.backgroundColor='#BCD4EC'; // to hilight the specified row
+function manageOrder(rowID,indexOfOrder,numOfPres){
+  // to hilight the specified row
+  hilightROW(rowID,numOfPres);
 
-
+    // to display hidden div
 var div = document.getElementById("orderDescription");
 if (div.style.display==='block'){ div.style.display='none';}
-if (div.style.display==='none'){ div.style.display='block';}
+if (div.style.display==='none'){ div.style.display='block';
+document.getElementById("MedHistory").style.display='none';}
+
 
 var reff = root.child(orderedPres[indexOfOrder]);
  var HtmlDetails;
@@ -72,51 +78,115 @@ var reff = root.child(orderedPres[indexOfOrder]);
    Name = Med.child("Name").val();
    NextRefillDate = Med.child("NextRefillDate").val();
    Quantitiy = Med.child("Quantitiy").val();
-   Details = Med.child("Related Details").val();
-   // Status = Med.child("OrderStatus").val();
+   Details = Med.child("RelatedDetails").val();
+   Status = Med.child("OrderStatus").val();
+   MedMRN = Med.child("MRN").val();
 
   HtmlDetails = '<tr><td class="serial">'+Name+'</td><td><div>'+Frequency+'</div><div>'+Dose+'</div><div>'
-+NextRefillDate+'</div><div>'+Quantitiy+'</div><div>'+Details+'</div></td><td>'
-+'<a onclick="Approve(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\')" class="w3-btn w3-green"><span>Approve</span></a>&nbsp;&nbsp;'
-+'<a onclick="Deny(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\')" class="w3-btn w3-red"><span>Deny</span></a></td>';
++NextRefillDate+'</div><div>'+Quantitiy+'</div><div>'+Details+'</div><div>'+Status+'</div></td><td>'
++'<a onclick="Approve(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+Status+'\')" class="w3-btn w3-green"><span>Approve</span></a>&nbsp;&nbsp;'
++'<a onclick="Deny(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+MedMRN+'\',\''+Status+'\')" class="w3-btn w3-red"><span>Deny</span></a></td>';
 $("#MedBody").append(HtmlDetails); // + '\',\''+MedArray
 }); // ref on Med
 } // manageOrder method
 
+function Approve(MedName,ordPres,Status){
+  if (Status == "Approved" ){
+    alert("Prescriped "+MedName+" is already Approved");
+    $("#body").load();}
 
-function Approve(MedName,ordPres){
+// ++++++++++++ Approve OrderStatus from prescription orders root node
 var PressRef = root.child(ordPres);
 var Med;
   PressRef.orderByChild("Name").equalTo(MedName).on("child_added", function(snapshot) {
     Med = snapshot;});
-
 var MedRef = root.child(ordPres).child(Med.key);
 MedRef.update(
 { OrderStatus: "Approved" });
-alert("Prescriped "+MedName+" is successfully Approved");
-}
 
-function Deny(MedName,ordPres){
+
+// ++++++++++++ Approve OrderStatus from orders node inside Patient
+var medMRN = Med.child("MRN").val();
+var users = root.parent.child("users");
+  users.orderByChild("Role").equalTo("Patient").on("child_added", function(patientNode) {
+    var Mrn = patientNode.child("MRN").val();
+    if (Mrn==medMRN) {
+      firebase.database().ref('/users/'+patientNode.key+'/Orders/'+PressRef.key+'/'+Med.key).update(
+      { OrderStatus: "Approved" });
+} // if mrn
+});
+alert("Prescriped "+MedName+" is successfully Approved");
+
+}// Approve function
+
+// $("#div").load(" #div > *");
+function Deny(MedName,ordPres,MRN,Status){
+  if (Status == "Denied" ){
+    alert("Prescriped "+MedName+" is already Denied");
+    // $("#orderDescription").load(" #MedBody > *");
+    $("#body").load();}
+
+// ++++++++++++ Deny OrderStatus from orders node inside Patient
   var PressRef = root.child(ordPres);
   var Med;
     PressRef.orderByChild("Name").equalTo(MedName).on("child_added", function(snapshot) {
       Med = snapshot;});
-
   var MedRef = root.child(ordPres).child(Med.key);
   MedRef.update(
   { OrderStatus: "Denied" });
-  alert("Prescriped "+MedName+" is Denied");
-var answer  = confirm("Would you like to subtitute the denied medicine to another on?");
-if (answer){
-  // subtitute();
-}
-else {}
+
+  // ++++++++++++ Deny OrderStatus from orders node inside Patient
+  var medMRN = Med.child("MRN").val();
+  var users = root.parent.child("users");
+    users.orderByChild("Role").equalTo("Patient").on("child_added", function(patientNode) {
+      var Mrn = patientNode.child("MRN").val();
+      if (Mrn==medMRN) {
+        firebase.database().ref('/users/'+patientNode.key+'/Orders/'+PressRef.key+'/'+Med.key).update(
+        { OrderStatus: "Denied" });
+  } // if mrn
+});
+
+alert("Prescriped "+MedName+" has been Denied");
+var answer  = confirm("Would you like to subtitute the denied medicine to another one?");
+if (answer){ subtitute(MedName,ordPres,MRN);}
+else {
+  $("#").load(" #tableBody> *"); }
+} // deny function
+
+function subtitute(MedName,ordPres,MRN) {
+  window.location = "/Prescription/subtituteMed.html?MRN="+MRN;
+
 }
 
-function subtitute() {
+function MedicalHistory(rowID,hisMRN,numOfPres){
+
+// to hilight the specified row
+hilightROW(rowID,numOfPres);
+
+// to display hidden div
+  var div = document.getElementById("MedHistory");
+  if (div.style.display==='block'){ div.style.display='none';}
+  if (div.style.display==='none'){ div.style.display='block';
+  document.getElementById("orderDescription").style.display='none';}
+
+var patientRoot = root.parent.child("users");
+var MedicalHistory;
+patientRoot.orderByChild("Role").equalTo("Patient").on("child_added", function(patientNode) {
+  var Mrn = patientNode.child("MRN").val();
+  if (Mrn==hisMRN){
+  MedicalHistory = patientNode.child("MedicalHistory").val();
+  document.getElementById("MedHistory").innerHTML = MedicalHistory;}
+});
+
+} //  Medical History function
+
+function hilightROW(rowID,numOfPres) {
+  for(var j=1; j<=numOfPres; j++){ // to remove hilight of all rows
+    document.getElementById(j).style.backgroundColor = '#FFFFFF	';}
+    document.getElementById(rowID).style.backgroundColor='#BCD4EC';
+
 
 }
-
 
         // jQuery(document).ready(function($) {
         //     "use strict";
