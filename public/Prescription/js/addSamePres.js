@@ -154,7 +154,7 @@ else if (ROLE=="Pharmacist") {
     Name:$('#mdName').val(),
     Dose:$('#doze').val(),
     Frequency:$('#frequency').val(),
-    Quantitiy::$('#Quantity').val(),
+    Quantitiy:$('#Quantity').val(),
     RelatedDetails: $('#dets').val(),
     NextRefillDate: $('#date').val(),
     MRN: MRNurl,
