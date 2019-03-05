@@ -23,17 +23,14 @@ var ROLE, physName;
     var root = firebase.database().ref().child("webUsers");
     root.once("value",function(snap) {
         ROLE = snap.child(user.uid).child("Role").val();
-        physName = snap.child(user.uid).child("Name").val();
+        // physName = snap.child(user.uid).child("Name").val();
 
-console.log("Name: "+physName);
-console.log("ROLE: "+ROLE);
+// console.log("Name: "+physName);
+// console.log("ROLE: "+ROLE);
 
-
-//   var root = firebase.database().ref().child("webUsers");
-//   root.once("value",function(snap) {
       physName = snap.child(firebase.auth().currentUser.uid).child("Name").val();
 //       console.log("physName");
-//       console.log(physName);
+      console.log(physName);
 //     });
 
 
@@ -181,7 +178,7 @@ $('#btnAdd').click(function(){
 // var details = ('#dets').val()=
 pref.push({
   Name:$('#mdName').val(),
-  Doze:$('#doze').val(),
+  Dose:$('#doze').val(),
   Frequency:$('#frequency').val(),
   Quantity:$('#Quantity').val(),
   RelatedDetails: $('#dets').val(),

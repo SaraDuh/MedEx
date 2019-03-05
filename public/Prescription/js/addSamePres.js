@@ -136,7 +136,7 @@ $('#btnAdd').click(function(){
   if( ROLE=="Physician") {
 pref.push({
   Name:$('#mdName').val(),
-  Doze:$('#doze').val(),
+  Dose:$('#doze').val(),
   Frequency:$('#frequency').val(),
   Quantity:$('#Quantity').val(),
   RelatedDetails: $('#dets').val(),
@@ -165,9 +165,9 @@ else if (ROLE=="Pharmacist") {
 
   PresOrdRef.push({
     Name:$('#mdName').val(),
-    Doze:$('#doze').val(),
+    Dose:$('#doze').val(),
     Frequency:$('#frequency').val(),
-    Quantitiy::$('#Quantity').val(),
+    Quantitiy:$('#Quantity').val(),
     RelatedDetails: $('#dets').val(),
     NextRefillDate: $('#date').val(),
     MRN: MRNurl,

@@ -48,7 +48,7 @@ function login(){
 
   var txtEmail = document.getElementById('email').value;
   var txtPass = document.getElementById('password').value;
-  console.log(txtEmail+" "+txtPass+" 1234");
+  console.log(txtEmail+" "+txtPass);
 
 
 

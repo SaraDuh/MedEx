@@ -7,6 +7,14 @@ var config = {
   messagingSenderId: "1006108228892"
 };
 firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location = 'Login_v2/index.html';
+    //If User is not logged in, redirect to login page
+  }
+});
+
 // get argument url
 var getURLpara = function getUrlParameter(sParam){
 var pageURL = decodeURIComponent(window.location.search.substring(1)),

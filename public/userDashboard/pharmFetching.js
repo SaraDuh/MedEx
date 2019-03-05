@@ -28,9 +28,6 @@ var root = firebase.database().ref().child("Prescription Orders");
 // var MRN,Status;
 var orderedPres
 root.on("value", snap => {
-// console.log(snap.val());
-// console.log(Object.keys(snap.val()));
-// console.log(Object.keys(snap.val()).length);
 
 var AllOrders = snap.val(); // json Object of all orders from firebase
  orderedPres = Object.keys(AllOrders); // array of all the orders
@@ -108,6 +105,7 @@ function hideBtn(hiddenBtn) { // hideBtn
   var Stid = "#StatusBtn";
   Stid = Stid.concat(hiddenBtn);
   // console.log(Stid);
+  // $("#AppDen_th").hide();
   $(Stid).hide(); }
 
 
