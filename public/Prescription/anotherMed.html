@@ -137,11 +137,13 @@ for (i=0; i < URLvars.length; i++){
 }}
 
 var MRNurl = getURLpara("MRN");
+var RxUrl = getURLpara("Rx");
 console.log(MRNurl);
+console.log(RxUrl);
 
 function redirect(){
 
-  window.location = "AddMedForm.html?MRN="+MRNurl;
+  window.location = "AddMedForm.html?MRN="+MRNurl+"&Rx="+RxUrl;
 
 }
 function CancelRedirect() {

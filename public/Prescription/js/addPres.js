@@ -8,15 +8,33 @@ var config = {
   messagingSenderId: "1006108228892"
 };
 firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location = '/Login_v2/index.html';
+    //If User is not logged in, redirect to login page
+  }
+});
 //edit this later
 
-var ROLE;
+var ROLE, physName;
   firebase.auth().onAuthStateChanged(function(user) {
   if(user != null){
     var root = firebase.database().ref().child("webUsers");
     root.once("value",function(snap) {
         ROLE = snap.child(user.uid).child("Role").val();
+        physName = snap.child(user.uid).child("Name").val();
+
+console.log("Name: "+physName);
 console.log("ROLE: "+ROLE);
+
+
+//   var root = firebase.database().ref().child("webUsers");
+//   root.once("value",function(snap) {
+      physName = snap.child(firebase.auth().currentUser.uid).child("Name").val();
+//       console.log("physName");
+//       console.log(physName);
+//     });
 
 
 
@@ -32,7 +50,9 @@ for (i=0; i < URLvars.length; i++){
 }}
 
 var MRNurl = getURLpara("MRN");
+var RxUrl = getURLpara("Rx");
 console.log(MRNurl);
+console.log(RxUrl);
 
 
 
@@ -132,7 +152,9 @@ return today;
 
 $('#btnAdd').click(function(){
 
-
+  var rxstring = Math.floor((Math.random() * 1000000) + 1);
+    //console.log(rxstring);
+    rxstring= String(rxstring);
 
 
     var pref;
@@ -141,16 +163,22 @@ $('#btnAdd').click(function(){
     }
     else if (ROLE=="Pharmacist") {
        // pref = root.child(parent+"/"+"Orders/";
-       pref = root.child(parent+"/"+"Orders/ORD"+(counter+1));
+       // pref = root.child(parent+"/"+"Orders/ORD"+(counter+1));
+       pref = root.child(parent+"/"+foundpreskey+"/"+RxUrl); // instead of ORD put Rx
+
     }
+
+
 
   //console.log(pref);
   pref.set({
-    RX: Math.floor((Math.random() * 1000000) + 1),
-    PrescriptionDate: getTodaysDate()
+    RX: rxstring,
+    PrescriptionDate: getTodaysDate(),
+    PrescribedPhysician: physName
     // ++++ TO DO : add prescribing physcian
   });
 
+// var details = ('#dets').val()=
 pref.push({
   Name:$('#mdName').val(),
   Doze:$('#doze').val(),
@@ -167,7 +195,7 @@ pref.push({
 
 //TO DO: add second medication
 // add another med (to the same) prescription
-window.location = "anotherMed.html?MRN="+MRNurl;
+window.location = "anotherMed.html?MRN="+MRNurl+"&Rx="+RxUrl;
 console.log(MRNurl);
 
 });

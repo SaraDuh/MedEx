@@ -34,8 +34,7 @@ root.on("child_added", snap => {
 
   var HTMLtxt = '<h3> Name: </h3> <h4>'+Name+
   '</h4><h3> Email </h3> <h4>'+email+'</h4><h3> Delivery Area </h3> <h4>'+area+
-  '</h4><h3> Phone Number </h3> <h4>'+PhoneNo+'</h4><h3> Phone Number </h3> <h4>'
-  +PhoneNo;
+  '</h4><h3> Phone Number </h3> <h4>'+PhoneNo;
 
    $("#profileDiv").append(HTMLtxt);
    $("#name").append(Name);

@@ -8,6 +8,13 @@ var config = {
 };
 firebase.initializeApp(config);
 
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location = '/Login_v2/index.html';
+    //If User is not logged in, redirect to login page
+  }
+});
+
 function logout(){
 
   firebase.auth().signOut();

@@ -8,6 +8,14 @@ var config = {
   messagingSenderId: "1006108228892"
 };
 firebase.initializeApp(config);
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location = '/Login_v2/index.html';
+    //If User is not logged in, redirect to login page
+  }
+});
+
+
 var ROLE;
   firebase.auth().onAuthStateChanged(function(user) {
   if(user != null){
@@ -29,8 +37,9 @@ for (i=0; i < URLvars.length; i++){
 }}
 
 var MRNurl = getURLpara("MRN");
+var RxUrl = getURLpara("Rx");
 console.log(MRNurl);
-
+console.log(RxUrl);
 
 
 // fetching
@@ -118,27 +127,61 @@ $('#btnAdd').click(function(){
   }
   else if (ROLE=="Pharmacist") {
     // pref = root.child(parent+"/"+foundpreskey";
-    pref = root.child(parent+"/"+foundpreskey+"/ORD"+(counter));
+    pref = root.child(parent+"/"+foundpreskey+"/"+RxUrl); // instead of ORD put Rx
   }
 
   // = root.child(parent+"/"+foundpreskey+"/PR"+(counter));
   console.log(pref);
 
+  if( ROLE=="Physician") {
 pref.push({
-  mdName:$('#mdName').val(),
-  doze:$('#doze').val(),
-  frequency:$('#frequency').val(),
+  Name:$('#mdName').val(),
+  Doze:$('#doze').val(),
+  Frequency:$('#frequency').val(),
   Quantity:$('#Quantity').val(),
-  dts: $('#dets').val(),
+  RelatedDetails: $('#dets').val(),
   Refill: $("input[name='refill']:checked").val(),
   nextRefillDate: $('#date').val()
   //yrefill:$('#yrefill').val(),
 
-});
+}); }
+
+else if (ROLE=="Pharmacist") {
+  var satPrice = prompt("Please set a Price for the approval medicine!");
+  while (satPrice==null) { satPrice = prompt("Please you must to set a Price for the approval medicine!");}
+
+  pref.push({
+    Name:$('#mdName').val(),
+    Dose:$('#doze').val(),
+    Frequency:$('#frequency').val(),
+    Quantitiy::$('#Quantity').val(),
+    RelatedDetails: $('#dets').val(),
+    NextRefillDate: $('#date').val(),
+    MRN: MRNurl,
+    OrderStatus: "Approved",
+    Price: satPrice
+  });
+  var PresOrdRef = firebase.database().ref().child("Prescription Orders").child(RxUrl);
+
+  PresOrdRef.push({
+    Name:$('#mdName').val(),
+    Doze:$('#doze').val(),
+    Frequency:$('#frequency').val(),
+    Quantitiy::$('#Quantity').val(),
+    RelatedDetails: $('#dets').val(),
+    NextRefillDate: $('#date').val(),
+    MRN: MRNurl,
+    OrderStatus: "Approved",
+    Price: satPrice
+  });
+}
+
+
+
 
 //TO DO: add second medication
 // add another med (to the same) prescription
-window.location = "anotherMed.html?MRN="+MRNurl;
+window.location = "anotherMed.html?MRN="+MRNurl+"&Rx="+RxUrl;
 
 
 });

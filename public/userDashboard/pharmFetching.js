@@ -8,6 +8,13 @@ var config = {
 };
 firebase.initializeApp(config);
 
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location = '/Login_v2/index.html';
+    //If User is not logged in, redirect to login page
+  }
+});
+
 function logout(){
 
   firebase.auth().signOut();
@@ -69,6 +76,7 @@ document.getElementById("MedHistory").style.display='none';}
 
 var reff = root.child(orderedPres[indexOfOrder]);
  var HtmlDetails;
+ var hiddenBtn = 0;
  $("#MedBody").empty();
  reff.on("child_added", Med => {
    var Frequency,Dose,Name,NextRefillDate,Quantitiy,Details,MedStatus,MedMRN;
@@ -81,19 +89,32 @@ var reff = root.child(orderedPres[indexOfOrder]);
    Details = Med.child("RelatedDetails").val();
    Status = Med.child("OrderStatus").val();
    MedMRN = Med.child("MRN").val();
+   hiddenBtn++;
 
-  HtmlDetails = '<tr><td class="serial">'+Name+'</td><td><div>'+Frequency+'</div><div>'+Dose+'</div><div>'
-+NextRefillDate+'</div><div>'+Quantitiy+'</div><div>'+Details+'</div><div>'+Status+'</div></td><td>'
+
+  HtmlDetails = '<tr><td class="serial">'+Name+'</td><td><div>'+Frequency+'</div><div>'+Dose+'</div><div>'+NextRefillDate+'</div><div>'
++Quantitiy+'</div><div>'+Details+'</div><div><strong>'+Status+'</strong></div></td><td id="StatusBtn'+hiddenBtn+'">'
 +'<a onclick="Approve(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+Status+'\')" class="w3-btn w3-green"><span>Approve</span></a>&nbsp;&nbsp;'
 +'<a onclick="Deny(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+MedMRN+'\',\''+Status+'\')" class="w3-btn w3-red"><span>Deny</span></a></td>';
 $("#MedBody").append(HtmlDetails); // + '\',\''+MedArray
+
+if (Status!="Pending") {
+hideBtn(hiddenBtn); }
+
 }); // ref on Med
 } // manageOrder method
 
+function hideBtn(hiddenBtn) { // hideBtn
+  var Stid = "#StatusBtn";
+  Stid = Stid.concat(hiddenBtn);
+  // console.log(Stid);
+  $(Stid).hide(); }
+
+
 function Approve(MedName,ordPres,Status){
-  if (Status == "Approved" ){
-    alert("Prescriped "+MedName+" is already Approved");
-    $("#body").load();}
+  // if (Status == "Approved" ){
+  //   alert("Prescriped "+MedName+" is already Approved");
+  //   $("#body").load();}
 
 // ++++++++++++ Approve OrderStatus from prescription orders root node
 var PressRef = root.child(ordPres);
@@ -101,8 +122,12 @@ var Med;
   PressRef.orderByChild("Name").equalTo(MedName).on("child_added", function(snapshot) {
     Med = snapshot;});
 var MedRef = root.child(ordPres).child(Med.key);
+var satPrice = prompt("Please set a Price for the approval medicine!");
+while (satPrice==null) { satPrice = prompt("Please you must to set a Price for the approval medicine!");}
+
 MedRef.update(
-{ OrderStatus: "Approved" });
+{ OrderStatus: "Approved",
+Price: satPrice });
 
 
 // ++++++++++++ Approve OrderStatus from orders node inside Patient
@@ -112,19 +137,21 @@ var users = root.parent.child("users");
     var Mrn = patientNode.child("MRN").val();
     if (Mrn==medMRN) {
       firebase.database().ref('/users/'+patientNode.key+'/Orders/'+PressRef.key+'/'+Med.key).update(
-      { OrderStatus: "Approved" });
+      { OrderStatus: "Approved",
+      Price: satPrice
+ });
 } // if mrn
 });
 alert("Prescriped "+MedName+" is successfully Approved");
 
 }// Approve function
 
+
 // $("#div").load(" #div > *");
 function Deny(MedName,ordPres,MRN,Status){
-  if (Status == "Denied" ){
-    alert("Prescriped "+MedName+" is already Denied");
-    // $("#orderDescription").load(" #MedBody > *");
-    $("#body").load();}
+  // if (Status == "Denied" ){
+  //   alert("Prescriped "+MedName+" is already Denied");
+  //   $("#body").load();}
 
 // ++++++++++++ Deny OrderStatus from orders node inside Patient
   var PressRef = root.child(ordPres);
@@ -148,13 +175,15 @@ function Deny(MedName,ordPres,MRN,Status){
 
 alert("Prescriped "+MedName+" has been Denied");
 var answer  = confirm("Would you like to subtitute the denied medicine to another one?");
-if (answer){ subtitute(MedName,ordPres,MRN);}
+if (answer){
+  // var satPrice = prompt("Please enter a Price for the approval medicine!");
+  subtitute(MedName,ordPres,MRN);}
 else {
   $("#").load(" #tableBody> *"); }
 } // deny function
 
 function subtitute(MedName,ordPres,MRN) {
-  window.location = "/Prescription/subtituteMed.html?MRN="+MRN;
+  window.location = "/Prescription/subtituteMed.html?MRN="+MRN+"&Rx="+ordPres;
 
 }
 
