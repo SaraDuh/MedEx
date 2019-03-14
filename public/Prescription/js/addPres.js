@@ -16,7 +16,6 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 //edit this later
-
 var ROLE, physName;
   firebase.auth().onAuthStateChanged(function(user) {
   if(user != null){
@@ -26,7 +25,7 @@ var ROLE, physName;
         // physName = snap.child(user.uid).child("Name").val();
 
 // console.log("Name: "+physName);
-// console.log("ROLE: "+ROLE);
+console.log("ROLE: "+ROLE);
 
       physName = snap.child(firebase.auth().currentUser.uid).child("Name").val();
 //       console.log("physName");
@@ -49,7 +48,7 @@ for (i=0; i < URLvars.length; i++){
 var MRNurl = getURLpara("MRN");
 var RxUrl = getURLpara("Rx");
 console.log(MRNurl);
-console.log(RxUrl);
+console.log("RX: "+RxUrl);
 
 
 
@@ -58,9 +57,6 @@ var root = firebase.database().ref().child("users");
 var counter = 0;
 
 // retrieve from the database the number of prescriptions available so we know what is the number to add on
-
-
-
 var parent;
 var foundpreskey;
 root.on("value", getData, errData);
@@ -142,13 +138,37 @@ if (mm < 10) {
 today = mm + '/' + dd + '/' + yyyy;
 //document.write(today);
 return today;
-
 };
 
 
+$("#yrefill").click(function(){ $('#refillDiv').show(); });
+$("#nrefill").click(function(){ $('#refillDiv').hide(); });
 
 $('#btnAdd').click(function(){
+// if inputs has validatation classes then btn disable
 
+var Validaty = true;
+var input = $('.validate-input .input100');
+  for(var i=0; i<input.length; i++) {
+
+   if($(input[i]).attr('name') == 'email') {
+     if($(input[i]).val().trim().match(/^[a-zA-Z_]*$/) == null) {
+       Validaty = false; } // if contrains other than chars
+     } // if the input is medicine Name validatable fields
+
+   if($(input[i]).attr('name') == 'doze' || $(input).attr('name') == 'frequency' || $(input).attr('name') == 'Quantity') {
+          if($(input[i]).val().trim().match(/^[a-zA-Z0-9]*$/) == null) { Validaty = false; } // if contrains other than chars and numbers
+       else if($(input[i]).val().trim() == ''){ Validaty = false; } //if empty fields
+     } // if the input is one of the 3 validatable fields
+
+   if ($(input[i]).attr('name') == 'refill'){ // if input is refill btn
+       if ( $('input[name=refill]:checked').length == 0 ) {  Validaty = false; } // if uncheacked refill    // window.alert("Please select if the Prescriped medicine has a refill or not");
+   } // if input is refill btn
+
+ } // for loop
+console.log("Validaty: "+Validaty);
+
+if(Validaty) {
   var rxstring = Math.floor((Math.random() * 1000000) + 1);
     //console.log(rxstring);
     rxstring= String(rxstring);
@@ -162,10 +182,7 @@ $('#btnAdd').click(function(){
        // pref = root.child(parent+"/"+"Orders/";
        // pref = root.child(parent+"/"+"Orders/ORD"+(counter+1));
        pref = root.child(parent+"/"+foundpreskey+"/"+RxUrl); // instead of ORD put Rx
-
-    }
-
-
+     }
 
   //console.log(pref);
   pref.set({
@@ -175,7 +192,6 @@ $('#btnAdd').click(function(){
     // ++++ TO DO : add prescribing physcian
   });
 
-// var details = ('#dets').val()=
 pref.push({
   Name:$('#mdName').val(),
   Dose:$('#doze').val(),
@@ -188,15 +204,15 @@ pref.push({
 
 });
 
+  //TO DO: add second medication
+  // add another med (to the same) prescription
+  window.location = "anotherMed.html?MRN="+MRNurl+"&Rx="+RxUrl;
+  console.log(MRNurl);
+} // if Validaty true
+// else { window.location = "AddPrescriptionForm.html?MRN="+MRNurl; } // reload
+else { window.alert("Invalid Input \n Please fill all the required fields with a valid information"); }
 
-
-//TO DO: add second medication
-// add another med (to the same) prescription
-window.location = "anotherMed.html?MRN="+MRNurl+"&Rx="+RxUrl;
-console.log(MRNurl);
-
-});
-
+}); // $(btn).cick
 
 }); //     root.once("value",function(snap)
 } //   if(user != null)

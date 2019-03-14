@@ -116,9 +116,11 @@ function getNumOfPrescription(pres){
 };
 
 
-$('#btnAdd').click(function(){
+$("#yrefill").click(function(){ $('#refillDiv').show(); });
+$("#nrefill").click(function(){ $('#refillDiv').hide(); });
 
-    // find the user by their mrn
+$('#btnAdd').click(function(){
+// find the user by their mrn
 
 
   var pref;
@@ -129,9 +131,34 @@ $('#btnAdd').click(function(){
     // pref = root.child(parent+"/"+foundpreskey";
     pref = root.child(parent+"/"+foundpreskey+"/"+RxUrl); // instead of ORD put Rx
   }
-
   // = root.child(parent+"/"+foundpreskey+"/PR"+(counter));
-  console.log(pref);
+  console.log(pref.key);
+
+
+var Validaty = true;
+var input = $('.validate-input .input100');
+  for(var i=0; i<input.length; i++) {
+
+   if($(input[i]).attr('name') == 'email') {
+     if($(input[i]).val().trim().match(/^[a-zA-Z_]*$/) == null) {
+       Validaty = false; } // if contrains other than chars
+     } // if the input is medicine Name validatable fields
+
+   if($(input[i]).attr('name') == 'doze' || $(input).attr('name') == 'frequency' || $(input).attr('name') == 'Quantity') {
+          if($(input[i]).val().trim().match(/^[a-zA-Z0-9]*$/) == null) { Validaty = false; } // if contrains other than chars and numbers
+       else if($(input[i]).val().trim() == ''){ Validaty = false; } //if empty fields
+     } // if the input is one of the 3 validatable fields
+
+   if ($(input[i]).attr('name') == 'refill'){ // if input is refill btn
+       if ( $('input[name=refill]:checked').length == 0 ) {  Validaty = false; } // if uncheacked refill    // window.alert("Please select if the Prescriped medicine has a refill or not");
+   } // if input is refill btn
+
+ } // for loop
+console.log("Validaty: "+Validaty);
+
+
+
+  if(Validaty) {
 
   if( ROLE=="Physician") {
 pref.push({
@@ -183,8 +210,10 @@ else if (ROLE=="Pharmacist") {
 // add another med (to the same) prescription
 window.location = "anotherMed.html?MRN="+MRNurl+"&Rx="+RxUrl;
 
+}// if Validaty
+else { window.alert("Invalid Input \n Please fill all the required fields with a valid information"); }
 
-});
+}); // $(btn).cick
 
 }); //     root.once("value",function(snap)
 } //   if(user != null)

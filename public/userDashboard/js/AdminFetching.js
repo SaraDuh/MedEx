@@ -8,11 +8,18 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var webUsers = firebase.database().ref().child("webUsers");
+var Rol;
 firebase.auth().onAuthStateChanged(user => {
-  if(!user) {
-    window.location = '/Login_v2/index.html';
-    //If User is not logged in, redirect to login page
-  }
+  if(!user) { //If User is not logged in, redirect to login page
+    window.location = '/Login_v2/index.html'; }
+    webUsers.once("value",function(snap) {
+      Rol = snap.child(user.uid).child("Role").val();
+      // console.log("Rol   "+Rol);
+      if (Rol != "Admin") {
+        if (Rol=="Physician") window.location = 'dashboard.html';
+         else if (Rol=="Pharmacist") window.location = 'pharmDashboard.html'; }
+    });
 });
 
 function logout(){
