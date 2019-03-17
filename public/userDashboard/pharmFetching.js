@@ -87,7 +87,7 @@ var reff = root.child(orderedPres[indexOfOrder]);
  reff.on("child_added", Med => {
    var Frequency,Dose,Name,NextRefillDate,Quantitiy,Details,MedStatus,MedMRN;
 
-   Frequency = Med.child(" Frequency").val();
+   Frequency = Med.child("Frequency").val();
    Dose = Med.child("Dose").val();
    Name = Med.child("Name").val();
    NextRefillDate = Med.child("NextRefillDate").val();
