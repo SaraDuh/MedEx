@@ -152,12 +152,12 @@ var input = $('.validate-input .input100');
   for(var i=0; i<input.length; i++) {
 
    if($(input[i]).attr('name') == 'email') {
-     if($(input[i]).val().trim().match(/^[a-zA-Z_]*$/) == null) {
+     if($(input[i]).val().trim().match(/^[a-zA-Z_]{1,30}$/) == null) {
        Validaty = false; } // if contrains other than chars
      } // if the input is medicine Name validatable fields
 
    if($(input[i]).attr('name') == 'doze' || $(input).attr('name') == 'frequency' || $(input).attr('name') == 'Quantity') {
-          if($(input[i]).val().trim().match(/^[a-zA-Z0-9]*$/) == null) { Validaty = false; } // if contrains other than chars and numbers
+          if($(input[i]).val().trim().match(/^[a-zA-Z0-9]{1,30}$/) == null) { Validaty = false; } // if contrains other than chars and numbers
        else if($(input[i]).val().trim() == ''){ Validaty = false; } //if empty fields
      } // if the input is one of the 3 validatable fields
 
