@@ -7,13 +7,6 @@ var config = {
   messagingSenderId: "1006108228892"
 };
 firebase.initializeApp(config);
-firebase.auth().onAuthStateChanged(user => {
-  if(!user) {
-    window.location = 'Login_v2/index.html';
-    //If User is not logged in, redirect to login page
-  }
-});
-
 // get argument url
 var getURLpara = function getUrlParameter(sParam){
 var pageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -28,31 +21,54 @@ for (i=0; i < URLvars.length; i++){
 
 var root = firebase.database().ref().child("users");
 var PhoneUrl = getURLpara("PhoneNo");
+var PhoneNo, area, Name, email;
+
 root.on("child_added", snap => {
   // var role = snap.child("Role").val();
   var phone = snap.child("PhoneNo").val();
   if (phone == PhoneUrl) {
-  var Name = snap.child("Name").val();
-  var area = snap.child("DeliveryArea").val();
-  var email = snap.child("Email").val();
+   Name = snap.child("Name").val();
+  console.log(Name);
+   area = snap.child("DeliveryArea").val();
+   email = snap.child("Email").val();
   //var MH = snap.child("Medical History").val();
-  var PhoneNo = snap.child("PhoneNo").val();
+   PhoneNo = snap.child("PhoneNo").val();
   //var Gender = snap.child("Gender").val();
 
-  var HTMLtxt = '<h3> Name: </h3> <h4>'+Name+
-  '</h4><h3> Email </h3> <h4>'+email+'</h4><h3> Delivery Area </h3> <h4>'+area+
-  '</h4><h3> Phone Number </h3> <h4>'+PhoneNo;
+$("#fName").val(Name);
+$("#email").val(email);
+$("#phone").val(PhoneNo);
+$("#area").val(area);
 
-   $("#profileDiv").append(HTMLtxt);
-   $("#name").append(Name);
+
  }
 });
 
-function getMRN(){
-  console.log(PhoneUrl);
-   document.getElementById("a").href="/editProfile/index.html?PhoneNo="+PhoneUrl;
-}
 
-// $("#body").ready(function(){
-//   alert(getURLpara("MRN"));
-// });
+$("#btnEdit").click(function(){
+var driverRef;
+root.orderByChild("PhoneNo").equalTo(PhoneNo).on("child_added", function(snap){
+driverRef = snap;
+});
+console.log(driverRef.key);
+
+var DriverRoot = firebase.database().ref().child("users").child(driverRef.key);
+DriverRoot.update({
+
+  DeliveryArea:$('#area').val(),
+  Email:$('#email').val(),
+  Name:$('#fName').val(),
+  PhoneNo: $('#phone').val()
+
+});
+
+window.location="../../driverProfile.html?PhoneNo="+PhoneNo;
+
+
+});
+
+$(document).ready(function(){
+  $("#btnEdit").click(function(event){
+    event.preventDefault();
+  });
+});
