@@ -116,8 +116,10 @@ function getNumOfPrescription(pres){
 };
 
 
-$("#yrefill").click(function(){ $('#refillDiv').show(); });
-$("#nrefill").click(function(){ $('#refillDiv').hide(); });
+$("#yrefill").click(function(){ $('#refillDiv').show();
+$("#date").attr("required", "true"); });
+$("#nrefill").click(function(){ $('#refillDiv').hide();
+$("#date").attr("required", "false"); });
 
 $('#btnAdd').click(function(){
 // find the user by their mrn
@@ -137,23 +139,26 @@ $('#btnAdd').click(function(){
 
 var Validaty = true;
 var input = $('.validate-input .input100');
-  for(var i=0; i<input.length; i++) {
+for(var i=0; i<input.length; i++) {
 
-   if($(input[i]).attr('name') == 'email') {
-     if($(input[i]).val().trim().match(/^[a-zA-Z_]*$/) == null) {
-       Validaty = false; } // if contrains other than chars
-     } // if the input is medicine Name validatable fields
+ if($(input[i]).attr('name') == 'email') {
+   if($(input[i]).val().trim().match(/^[a-zA-Z_, ]{1,20}$/) == null) {
+     Validaty = false; } // if contrains other than chars
+   if($(input[i]).val().trim() == ''){ Validaty = false; } //if empty fields
+   } // if the input is medicine Name validatable fields
 
-   if($(input[i]).attr('name') == 'doze' || $(input).attr('name') == 'frequency' || $(input).attr('name') == 'Quantity') {
-          if($(input[i]).val().trim().match(/^[a-zA-Z0-9]*$/) == null) { Validaty = false; } // if contrains other than chars and numbers
-       else if($(input[i]).val().trim() == ''){ Validaty = false; } //if empty fields
-     } // if the input is one of the 3 validatable fields
+ else if($(input[i]).attr('name') == 'doze' || $(input[i]).attr('name') == 'frequency' || $(input[i]).attr('name') == 'Quantity') {
+        if($(input[i]).val().trim().match(/^[a-zA-Z0-9, ]{1,20}$/) == null) { Validaty = false; } // if contrains other than chars and numbers
+        if($(input[i]).val().trim() == null){ Validaty = false; } //if empty fields
+   } // if the input is one of the 3 validatable fields
 
-   if ($(input[i]).attr('name') == 'refill'){ // if input is refill btn
-       if ( $('input[name=refill]:checked').length == 0 ) {  Validaty = false; } // if uncheacked refill    // window.alert("Please select if the Prescriped medicine has a refill or not");
-   } // if input is refill btn
+ else if ($(input[i]).attr('id') == 'yrefill'){ // if input is yes radio refill btn
+   if( $("#yrefill").is(':checked') ) { // if it has refill but has no date
+     if($("#date").val().trim() == ""){ Validaty = false; } //if empty date
+   }
+ } // if input is yes radio refill btn
 
- } // for loop
+} // for loop
 console.log("Validaty: "+Validaty);
 
 

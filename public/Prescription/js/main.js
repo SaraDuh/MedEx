@@ -43,19 +43,22 @@
 
     function validate (input) {
 
+      if($(input).val().trim() == ' '){
+       return false; }
+
       if($(input).attr('name') == 'email') {
-        if($(input).val().trim().match(/^[a-zA-Z_]*$/) == null) {
+        if($(input).val().trim().match(/^[a-zA-Z_, ]*$/) == null) {
           return false; }
         } // if the input is medicine Name validatable fields
 
       else if($(input).attr('name') == 'doze' || $(input).attr('name') == 'frequency' || $(input).attr('name') == 'Quantity') {
-             if($(input).val().trim().match(/^[a-zA-Z0-9]*$/) == null) {
+             if($(input).val().trim().match(/^[a-zA-Z0-9, ]*$/) == null) {
                return false; }
              } // if the input is one of the 3 validatable fields
-          else {
-            if($(input).val().trim() == ''){
-            return false; }
-          }
+          // else {
+          //   if($(input).val().trim() == ''){
+          //   return false; }
+          // }
         }
 
     // function validate (input) {

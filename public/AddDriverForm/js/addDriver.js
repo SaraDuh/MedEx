@@ -18,95 +18,35 @@ firebase.auth().onAuthStateChanged(user => {
 //edit this later
 var root = firebase.database().ref().child("users");
 
-
-
-// var getURLpara = function getUrlParameter(sParam){
-// var pageURL = decodeURIComponent(window.location.search.substring(1)),
-// URLvars = pageURL.split('&'),
-// parameterName,
-// i;
-// for (i=0; i < URLvars.length; i++){
-//   parameterName = URLvars[i].split('=');
-//   if(parameterName[0] === sParam){
-//     return parameterName[1] === undefined ? true : parameterName[1]; }
-// }}
-//
-// var MRNurl = getURLpara("MRN");
-// console.log(MRNurl);
-
-
-
-// fetching
-
-var counter = 0;
-
-// retrieve from the database the number of prescriptions available so we know what is the number to add on
-
-
-
-// var parent;
-// var foundpreskey;
-// root.on("value", getData, errData);
-//
-// function getData(data){
-//
-// var nodeKeys = data.val();
-//
-// var keys = Object.keys(nodeKeys);
-//console.log("here comes the nodes");
-//console.log(nodeKeys);
-//console.log(keys);
-
-// for(var i=0; i<keys.length; i++){
-//   var k = keys[i];
-//
-//   var pres = nodeKeys[k].Prescriptions;
-//
-//   var mrn = nodeKeys[k].MRN;
-//   if(mrn == MRNurl){
-//     //console.log(getNumOfPrescription(pres));
-//     //console.log(mrn);
-//     //console.log(mrn);
-//     foundpreskey = root.child(keys[i]).child("Prescriptions");
-//     console.log(keys[i]);
-
- //yes = firebase.database().ref().child(foundpreskey.key);
- //parent = foundpreskey.parent.key;
-//  parent= keys[i];
-//  console.log(parent);
-//  foundpreskey = foundpreskey.key;
-//  console.log(foundpreskey);
-//  counter = getNumOfPrescription(pres);
-//  console.log(counter);
-//   }
-//
-// }
-//
-// };
-
-
-// function errData(err){
-//
-// console.log("Error!");
-// console.log(err);
-//
-// };
-//
-// function getNumOfPrescription(pres){
-//   return Object.keys(pres).length;
-//
-// };
-
-
-
-
-
 $('#btnAdd').click(function(){
+
+var Validaty = true;
+var input = $('.validate-input .input100');
+var email = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+    for(var i=0; i<input.length; i++) {
+
+      if($(input[i]).attr('name') == 'email') {
+        if($(input[i]).val().trim().match(email) == null) {
+          Validaty = false; }
+        }
+      else if($(input[i]).attr('name') == 'phone') {
+        if($(input[i]).val().trim().match(/^[0-9]{12}$/) == null) {
+          Validaty = false; }
+      }
+      else if($(input[i]).attr('name') == 'fname' || $(input[i]).attr('name') == 'lname' || $(input[i]).attr('name') == 'area' ) {
+        if($(input[i]).val().trim().match(/^[a-zA-Z, ]{1,20}$/) == null) {
+          Validaty = false; }
+      }
+
+   } // for loop
+console.log("Validaty: "+Validaty);
+
+if(Validaty) {
+
 
 var name = $('#fName').val()+" "+$('#lName').val();
 console.log(name);
-  //var pref = root.child(parent+"/"+"Prescriptions/PR"+(counter+1));
-  //console.log(pref);
 
 root.push({
 
@@ -121,7 +61,14 @@ root.push({
 
 //TO DO: add second medication
 // add another med (to the same) prescription
-// window.location = "";
-window.location = "/userDashboard/AdminDashboard.html"
+window.location = "/userDashboard/AdminDashboard.html";
+}// if Validaty
+else { window.alert("Invalid Input \nPlease fill all the required fields with a valid information"); }
 
+});
+
+$(document).ready(function(){
+  $("#btnAdd").click(function(event){
+    event.preventDefault();
+  });
 });

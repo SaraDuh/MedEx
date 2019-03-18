@@ -53,6 +53,37 @@ driverRef = snap;
 console.log(driverRef.key);
 
 var DriverRoot = firebase.database().ref().child("users").child(driverRef.key);
+
+// check before update
+
+
+
+
+var Validaty = true;
+var input = $('.validate-input .input100');
+var email = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+  for(var i=0; i<input.length; i++) {
+    if($(input[i]).attr('name') == 'email') {
+      if($(input[i]).val().trim().match(email) == null) {
+        Validaty = false; }
+      }
+    else if($(input[i]).attr('name') == 'phone') {
+      if($(input[i]).val().trim().match(/^[0-9]{12}$/) == null) {
+        Validaty = false; }
+    }
+    else if($(input[i]).attr('name') == 'name' || $(input[i]).attr('name') == 'area' ) {
+      if($(input[i]).val().trim().match(/^[a-zA-Z, ]*$/) == null) {
+        Validaty = false; }
+    }
+
+ } // for loop
+console.log("Validaty: "+Validaty);
+
+
+
+  if(Validaty) {
+
 DriverRoot.update({
 
   DeliveryArea:$('#area').val(),
@@ -63,6 +94,8 @@ DriverRoot.update({
 });
 
 window.location="../../driverProfile.html?PhoneNo="+PhoneNo;
+}// if Validaty
+else { window.alert("Invalid Input \nPlease fill all the required fields with a valid information"); }
 
 
 });

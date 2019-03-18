@@ -11,6 +11,7 @@
             }
             else {
                 $(this).parent().addClass('true-validate');
+                hideValidate(this);
             }
         })
     })
@@ -42,26 +43,27 @@
         });
     });
 
-var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+// var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 var email = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-//|| $(input).attr('name') == 'email' || $(input).attr('name') == 'phone'
-     function validate (input) {
-        if($(input).attr('type') == 'text') {
-            if(($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null)) {
-                return false;
-            }
-        }
-        // if($(input).attr('name') == 'email') {
-        //     if(email.test($(input).val().trim())) {
-        //         return false;
-        //     }
 
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
-    }
+     function validate (input) {
+       if($(input).val().trim() == ''){ // all fields are mandatory
+         return false; }
+
+       if($(input).attr('name') == 'email') { // if it email's field
+         if($(input).val().trim().match(email) == null) {
+           return false; }
+         }
+       else if($(input).attr('name') == 'phone') {
+         if($(input).val().trim().match(/^[0-9]{12}$/) == null) {
+           return false; }
+       }
+       else if($(input).attr('name') == 'name' || $(input).attr('name') == 'area' ) {
+         if($(input).val().trim().match(/^[a-zA-Z, ]*$/) == null) {
+           return false; }
+       }
+  } // validate method
+
 
 
 
