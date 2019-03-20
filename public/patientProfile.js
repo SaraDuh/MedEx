@@ -44,8 +44,8 @@ root.on("child_added", snap => {
   +AddressNode.child("AdditionalNo").val()+", "
   +AddressNode.child("Street Name").val()+", "
   +AddressNode.child("Neighborhood").val()+", "
-  +AddressNode.child("City").val()+", "
-  +AddressNode.child("BuildingNo").val()+".";
+  +AddressNode.child("City").val();
+  // +", "+AddressNode.child("BuildingNo").val()+".";
 
 
   var HTMLtxt = '<h3> Medical Record Number: </h3> <h4>'+MRN+
