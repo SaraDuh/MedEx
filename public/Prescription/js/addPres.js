@@ -197,7 +197,7 @@ if(Validaty) {
 
 pref.push({
   Name:$('#mdName').val(),
-  Dose:$('#doze').val(),
+  Doze:$('#doze').val(),
   Frequency:$('#frequency').val(),
   Quantity:$('#Quantity').val(),
   RelatedDetails: $('#dets').val(),
