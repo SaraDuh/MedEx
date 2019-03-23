@@ -46,8 +46,11 @@ root.on("child_added", snap => {
   var Gender = snap.child("Gender").val();
   var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td id="MRN'+counter+'">'+MRN+'</td><td><span class="name">'
   +Name+'</span></td><td><span class="product">'+Gender+'</span></td><td><a href="/patientProfile.html?MRN='+MRN
-  +'"><span style="background: #00B2F4" class="badge badge-complete">Patient Profile</span></a></td></tr>';
+  +'"><button type="button" class="btn btn-outline-primary btn-sm btn-outline-profile"><i class="fa fa-user"></i>&nbsp; Patient Profile</button></a></td></tr>';
 
    $("#tableBody").append(HTMLtxt);
  }
 });
+//style="background: #00B2F4; border-color: #00B2F4"
+//<button type="button" class="btn btn-primary btn-sm">Primary</button>
+//<span style="background: #00B2F4" class="badge badge-complete">Patient Profile</span>

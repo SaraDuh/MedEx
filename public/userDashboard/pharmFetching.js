@@ -35,7 +35,7 @@ var root = firebase.database().ref().child("Prescription Orders");
 // window.alert(root);
 
 // var MRN,Status;
-var orderedPres
+var orderedPres;
 root.on("value", snap => {
 
 var AllOrders = snap.val(); // json Object of all orders from firebase
@@ -60,8 +60,11 @@ for(var l=1; l<arr.length; l++){ if (arr[l-1] != arr[l]) Status = arr[l-1]+"/"+a
  HTMLtxt += '<tr id ="'+counter+'"><td class="serial">'+counter
  +'.</td><td><a style="color: black;" onclick="MedicalHistory('+counter+','+MRN+','+numOfPres+')">#'
  +MRN+'</a></td><td><span class="name">'+numOfMeds+'</span></td><td><span class="product">'
- +Status+'</span></td><td><a onclick="manageOrder('+counter+','+i+','+numOfPres+')"><span style="background: #00B2F4" class="badge badge-complete">Manage Order</span></a></td></tr>';
+ +Status+'</span></td><td><a onclick="manageOrder('+counter+','+i+','+numOfPres+')"><button type="button" class="btn btn-primary btn-sm btn-outline-profile"><i class="fa fa-medkit"></i>&nbsp; Manage Orders</button></a></td></tr>';
 counter++;
+
+//style="background: #00B2F4; border-color: #00B2F4"
+//<span style="background: #00B2F4" class="badge badge-complete">Manage Order</span>
 // $("#tableBody").append(HTMLtxt);
 document.getElementById("tableBody").innerHTML = HTMLtxt;
 }
@@ -71,7 +74,7 @@ document.getElementById("tableBody").innerHTML = HTMLtxt;
 
 function manageOrder(rowID,indexOfOrder,numOfPres){
   // to hilight the specified row
-  hilightROW(rowID,numOfPres);
+  //hilightROW(rowID,numOfPres);
 
     // to display hidden div
 var div = document.getElementById("orderDescription");
@@ -98,12 +101,13 @@ var reff = root.child(orderedPres[indexOfOrder]);
    hiddenBtn++;
 
 
-  HtmlDetails = '<tr><td class="serial">'+Name+'</td><td><div>'+Frequency+'</div><div>'+Dose+'</div><div>'+NextRefillDate+'</div><div>'
-+Quantitiy+'</div><div>'+Details+'</div><div><strong>'+Status+'</strong></div></td><td id="StatusBtn'+hiddenBtn+'">'
-+'<a onclick="Approve(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+Status+'\')" class="w3-btn w3-green"><span>Approve</span></a>&nbsp;&nbsp;'
-+'<a onclick="Deny(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+MedMRN+'\',\''+Status+'\')" class="w3-btn w3-red"><span>Deny</span></a></td>';
+  HtmlDetails = '<tr><td class="serial">'+Name+'</td><td><div>Frequency : '+Frequency+'</div><div>Dose : '+Dose+'</div><div>Next Refill Date : '+NextRefillDate+'</div><div>Quantitiy : '
++Quantitiy+'</div><div>Details : '+Details+'</div><div><strong>Status : '+Status+'</strong></div></td><td id="StatusBtn'+hiddenBtn+'">'
++'<a onclick="Approve(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+Status+'\')"><button type="button" class="btn btn-outline-success"><i class="fa fa-check"></i>&nbsp; Approve</button></a>&nbsp;&nbsp;'
++'<a onclick="Deny(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+MedMRN+'\',\''+Status+'\')"><button type="button" class="btn btn-outline-danger"><i class="fa fa-times"></i>&nbsp; Deny</button></a></td>';
 $("#MedBody").append(HtmlDetails); // + '\',\''+MedArray
 
+//'<a onclick="Approve(\'' + Name + '\',\''+orderedPres[indexOfOrder]+'\',\''+Status+'\')" class="w3-btn w3-green"><span>Approve</span></a>&nbsp;&nbsp;'
 if (Status!="Pending") {
 hideBtn(hiddenBtn); }
 
@@ -197,7 +201,7 @@ function subtitute(MedName,ordPres,MRN) {
 function MedicalHistory(rowID,hisMRN,numOfPres){
 
 // to hilight the specified row
-hilightROW(rowID,numOfPres);
+//hilightROW(rowID,numOfPres);
 
 // to display hidden div
   var div = document.getElementById("MedHistory");
@@ -216,13 +220,13 @@ patientRoot.orderByChild("Role").equalTo("Patient").on("child_added", function(p
 
 } //  Medical History function
 
-function hilightROW(rowID,numOfPres) {
-  for(var j=1; j<=numOfPres; j++){ // to remove hilight of all rows
-    document.getElementById(j).style.backgroundColor = '#FFFFFF	';}
-    document.getElementById(rowID).style.backgroundColor='#BCD4EC';
-
-
-}
+// function hilightROW(rowID,numOfPres) {
+//   for(var j=1; j<=numOfPres; j++){ // to remove hilight of all rows
+//     document.getElementById(j).style.backgroundColor = '#FFFFFF	';}
+//     document.getElementById(rowID).style.backgroundColor='#BCD4EC';
+//
+//
+// }
 
         // jQuery(document).ready(function($) {
         //     "use strict";

@@ -1,83 +1,54 @@
-[debug] [2019-03-19T10:30:08.197Z] ----------------------------------------------------------------------
-[debug] [2019-03-19T10:30:08.201Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2019-03-19T10:30:08.202Z] CLI Version:   6.3.0
-[debug] [2019-03-19T10:30:08.202Z] Platform:      darwin
-[debug] [2019-03-19T10:30:08.202Z] Node Version:  v10.15.0
-[debug] [2019-03-19T10:30:08.203Z] Time:          Tue Mar 19 2019 13:30:08 GMT+0300 (Arabian Standard Time)
-[debug] [2019-03-19T10:30:08.203Z] ----------------------------------------------------------------------
+[debug] [2019-03-21T12:26:15.923Z] ----------------------------------------------------------------------
+[debug] [2019-03-21T12:26:15.925Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-03-21T12:26:15.925Z] CLI Version:   6.3.0
+[debug] [2019-03-21T12:26:15.925Z] Platform:      darwin
+[debug] [2019-03-21T12:26:15.925Z] Node Version:  v10.15.0
+[debug] [2019-03-21T12:26:15.927Z] Time:          Thu Mar 21 2019 15:26:15 GMT+0300 (Arabian Standard Time)
+[debug] [2019-03-21T12:26:15.927Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2019-03-19T10:30:08.221Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-03-19T10:30:08.221Z] > authorizing via signed-in user
-[debug] [2019-03-19T10:30:08.222Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
-[debug] [2019-03-19T10:30:08.225Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
+[debug] [2019-03-21T12:26:15.938Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-21T12:26:15.939Z] > authorizing via signed-in user
+[debug] [2019-03-21T12:26:15.939Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
+[debug] [2019-03-21T12:26:15.941Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
 
-[debug] [2019-03-19T10:30:09.525Z] <<< HTTP RESPONSE 200
-[debug] [2019-03-19T10:30:09.529Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
+[debug] [2019-03-21T12:26:17.010Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-21T12:26:17.012Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
  
-[debug] [2019-03-19T10:30:10.653Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/Users/Sara/Downloads/GP2/MedEx'...
-[info] 
-[debug] [2019-03-19T10:30:10.657Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
- 
-[debug] [2019-03-19T10:30:11.366Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] ✔  hosting: Local server: http://localhost:5000
-[debug] [2019-03-20T18:28:46.949Z] ----------------------------------------------------------------------
-[debug] [2019-03-20T18:28:46.952Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2019-03-20T18:28:46.952Z] CLI Version:   6.3.0
-[debug] [2019-03-20T18:28:46.952Z] Platform:      darwin
-[debug] [2019-03-20T18:28:46.952Z] Node Version:  v10.15.0
-[debug] [2019-03-20T18:28:46.959Z] Time:          Wed Mar 20 2019 21:28:46 GMT+0300 (Arabian Standard Time)
-[debug] [2019-03-20T18:28:46.959Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2019-03-20T18:28:46.983Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-03-20T18:28:46.983Z] > authorizing via signed-in user
-[debug] [2019-03-20T18:28:46.983Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
-[debug] [2019-03-20T18:28:46.986Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-03-20T18:28:46.986Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-03-20T18:28:47.768Z] <<< HTTP RESPONSE 200
-[debug] [2019-03-20T18:28:47.779Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
-
-[debug] [2019-03-20T18:28:49.408Z] <<< HTTP RESPONSE 200
-[debug] [2019-03-20T18:28:49.411Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
- 
-[debug] [2019-03-20T18:28:50.558Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/Users/Sara/Downloads/GP2/MedEx'...
-[info] 
-[debug] [2019-03-20T18:28:50.562Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
- 
-[debug] [2019-03-20T18:28:51.592Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] ✔  hosting: Local server: http://localhost:5000
-[debug] [2019-03-21T07:55:55.108Z] ----------------------------------------------------------------------
-[debug] [2019-03-21T07:55:55.110Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2019-03-21T07:55:55.111Z] CLI Version:   6.3.0
-[debug] [2019-03-21T07:55:55.111Z] Platform:      darwin
-[debug] [2019-03-21T07:55:55.111Z] Node Version:  v10.15.0
-[debug] [2019-03-21T07:55:55.115Z] Time:          Thu Mar 21 2019 10:55:55 GMT+0300 (Arabian Standard Time)
-[debug] [2019-03-21T07:55:55.115Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2019-03-21T07:55:55.128Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-03-21T07:55:55.128Z] > authorizing via signed-in user
-[debug] [2019-03-21T07:55:55.128Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
-[debug] [2019-03-21T07:55:55.130Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-03-21T07:55:55.131Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-03-21T07:55:55.540Z] <<< HTTP RESPONSE 200
-[debug] [2019-03-21T07:55:55.556Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
-
-[debug] [2019-03-21T07:55:56.870Z] <<< HTTP RESPONSE 200
-[debug] [2019-03-21T07:55:56.871Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
- 
-[debug] [2019-03-21T07:55:57.954Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-21T12:26:18.012Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/Mia/Documents/GitHub/MedEx'...
 [info] 
-[debug] [2019-03-21T07:55:57.956Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
+[debug] [2019-03-21T12:26:18.015Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
  
-[debug] [2019-03-21T07:55:58.771Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-21T12:26:18.692Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2019-03-23T11:22:00.139Z] ----------------------------------------------------------------------
+[debug] [2019-03-23T11:22:00.142Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-03-23T11:22:00.142Z] CLI Version:   6.3.0
+[debug] [2019-03-23T11:22:00.142Z] Platform:      darwin
+[debug] [2019-03-23T11:22:00.142Z] Node Version:  v10.15.0
+[debug] [2019-03-23T11:22:00.147Z] Time:          Sat Mar 23 2019 14:22:00 GMT+0300 (Arabian Standard Time)
+[debug] [2019-03-23T11:22:00.147Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-23T11:22:00.163Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-23T11:22:00.164Z] > authorizing via signed-in user
+[debug] [2019-03-23T11:22:00.164Z] [iam] checking project medex-e6e1f for permissions ["firebase.projects.get"]
+[debug] [2019-03-23T11:22:00.166Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-03-23T11:22:00.166Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-03-23T11:22:00.621Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-23T11:22:00.638Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f:testIamPermissions  
+
+[debug] [2019-03-23T11:22:01.922Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-23T11:22:01.923Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/medex-e6e1f  
+ 
+[debug] [2019-03-23T11:22:02.921Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Mia/Documents/GitHub/MedEx'...
+[info] 
+[debug] [2019-03-23T11:22:02.925Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1006108228892/clients/_:getWebAppConfig  
+ 
+[debug] [2019-03-23T11:22:03.663Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
