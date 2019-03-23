@@ -44,13 +44,33 @@ root.on("child_added", snap => {
   var MRN = snap.child("MRN").val();
   var Name = snap.child("Name").val();
   var Gender = snap.child("Gender").val();
-  var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td id="MRN'+counter+'">'+MRN+'</td><td><span class="name">'
-  +Name+'</span></td><td><span class="product">'+Gender+'</span></td><td><a href="/patientProfile.html?MRN='+MRN
-  +'"><button type="button" class="btn btn-outline-primary btn-sm btn-outline-profile"><i class="fa fa-user"></i>&nbsp; Patient Profile</button></a></td></tr>';
+  var age = snap.child("Age").val();
+  var phone = snap.child("PhoneNo").val();
+  var HTMLtxt = '<tr><td class="serial">'+counter+'.</td><td id="MRN'+counter+'">'+MRN+'</td><td><span class="name">'+Name+'</span></td><td><span class="product">'+Gender+'</span></td><td><a href="#" onclick="patientProfile(\''+Name + '\',\''+ MRN + '\',\''+Gender +'\',\''+ age + '\',\''+ phone+'\')"><button type="button" class="btn btn-outline-primary btn-sm btn-outline-profile"><i class="fa fa-user"></i>&nbsp; Patient Profile</button></a></td></tr>';
 
    $("#tableBody").append(HTMLtxt);
  }
 });
+//<a href="/patientProfile.html?MRN='+MRN+'" onclick="patientProfile(\''+Name + '\',\''+ MRN + '\',\''+Gender +'\',\''+ age + '\',\''+ phone+'\')">
+//$("#btnEdit").click(function(){
+function patientProfile(Name, mrn, gender, age, phone){
+  console.log(age);
+    $("div#patname h2").text(Name);
+    $("li.li1").find('font').html(age);
+    $("li.li2").find('font').html(gender);
+    $("li.li3").find('font').html(mrn);
+    $("li.li4").find('font').html(phone);
+  $("#patientLilProfile").show();
+
+
+
+}
+
+//$('button#changeText').click(function() {
+//   $('li.select2-selection__choice').find('font').html('HELLO WORLD');
+// });
+// $("#patName").text("yes");
+
 //style="background: #00B2F4; border-color: #00B2F4"
 //<button type="button" class="btn btn-primary btn-sm">Primary</button>
 //<span style="background: #00B2F4" class="badge badge-complete">Patient Profile</span>
