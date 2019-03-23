@@ -179,10 +179,11 @@ iframe {
 
 .wrap-login100 {
   width: 390px;
+  /*height: 50%;*/
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  padding: 77px 55px 33px 55px;
+  padding: 33px 55px 33px 55px;
 
   box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
@@ -191,8 +192,10 @@ iframe {
   -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-
-/*------------------------------------------------------------------
+.img-center {
+  margin:0 auto;
+}
+/*---------width: 100%;---------------------------------------------------------
 [ Form ]*/
 
 .login100-form {

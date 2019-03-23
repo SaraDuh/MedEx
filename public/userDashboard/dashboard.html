@@ -81,7 +81,7 @@
 
     </style>
 </head>
-<script src="fetching.js">  </script>
+<!-- <script src="fetching.js">  </script> -->
 
 <body>
     <!-- Left Panel -->
@@ -92,12 +92,30 @@
                     <li class="active">
                         <a><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
-                    <li class="menu-title"><a href="dashboard.html" >Patients</a></li>
-                    <li class="menu-title"><a href="#" >Prescriptions</a></li>
-                    <li class="menu-title"><a href="#" >Extras</a></li>
-                    <li class="menu-title"><a href="#" >Extras</a></li>
+                    <!-- <li class="active">
+                      <div class="stat-content">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="stat-widget-four">
+                                        <div class="stat-icon dib">
+                                            <i class="ti-user text-muted"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <div class="text-left dib">
+                                                <div class="stat-heading">Welcome</div>
+                                                <div class="stat-text">Total: 24720</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></li> -->
+                    <li class="menu-title"><a href="dashboard.html" class="fa fa-stethoscope"> Patients</a></li>
 
-                    <!-- <li class="menu-item-has-children dropdown">
+                    <li class="menu-title" onclick="logout()"><a class="fa fa-sign-out"href="#" > Logout</a></li>
+
+                    <!-- fa-stethoscope<li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="menu-icon fa fa-glass"></i>Pages
                         </a>
@@ -139,15 +157,13 @@
                       <span class="count bg-danger">3</span>
                   </button>
               </div> -->
-              <div class="dropdown for-message">
+              <!-- <div class="dropdown for-message">
                   <button class="btn btn-secondary dropdown-toggle" type="button" onclick="logout()">
                       <i>
-                        <!-- TAB -->
                         Logout
                       </i>
-                      <!-- <span class="count bg-primary">4</span> -->
                   </button>
-                </div>
+                </div> -->
         </div>
       </div>
     </div>
@@ -161,7 +177,7 @@
             <input type="text" id="SearchBarInput" onfocus="this.value=''" placeholder="Search by MRN.." title="Type in a MRN">
 
             <div class="animated fadeIn">
-                <div class="clearfix"></div>
+                <!-- <div class="clearfix"></div> -->
                 <!-- Orders -->
                 <div class="orders">
                     <div class="row">
@@ -172,7 +188,7 @@
                                 </div>
                                 <div class="card-body--">
                                     <div class="table-stats order-table ov-h">
-                                        <table class="table ">
+                                        <table class="table table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th class="serial">#</th>
@@ -193,7 +209,59 @@
                         </div>  <!-- /.col-lg-8 -->
                     </div>
                 </div>
-                <div class="modal fade none-border" id="event-modal">
+
+                <!-- new patient profile -->
+                <div id="patientLilProfile" class="col-md-12">
+                    <aside class="profile-nav alt">
+                        <section class="card">
+                            <div class="card-header user-header alt">
+                                <div id="patname" class="media">
+                                    <a href="#">
+                                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.png">
+                                    </a>
+                                    <!-- <i class="ti-user align-self-center rounded-circle mr-3" style="width:85px; height:85px;"></i> -->
+                                    <div>
+                                        <h2></h2>
+                                        <p></p>
+
+                                      <a href="" id="a"><button type="button" class="btn btn-outline-secondary" onclick="goToForm()"><i class="fa fa-plus-square"></i>&nbsp; Add Prescription</button></a>
+
+                                        <!-- <p>Project Manager</p> -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item li1" id="age">
+                                    <a href="#"> <i class="fa fa-birthday-cake"></i> Age : <font></font> </a>
+                                </li>
+                                <li class="list-group-item li2" id="gender">
+                                    <a href="#"> <i class="fa fa-venus-mars"></i> Gender : <font></font> </a>
+                                </li>
+                                <li class="list-group-item li3" id="mrn">
+                                    <a href="#"> <i class="fa fa-id-card"></i> MRN : <font></font> </a>
+                                </li>
+                                <li class="list-group-item li4" id="mobilenum">
+                                    <a href="#"> <i class="fa fa-phone"></i> Phone Number :  <font></font></a>
+                                </li>
+                                <li class="list-group-item li5">
+                                    <a href="#"> <i class="fa fa-user-md"></i> Medical History :  <font></font></a>
+                                </li>
+                                <li class="list-group-item li6">
+                                    <a href="#"> <i class="fa fa-home"></i> Address :  <font></font></a>
+                                </li>
+                                <li class="list-group-item li7">
+                                    <a href="#"> <i class="fa fa-map-pin"></i> Postal Code :  <font></font></a>
+                                </li>
+                            </ul>
+
+                        </section>
+                    </aside>
+                </div>
+
+
+                <!-- <div class="modal fade none-border" id="event-modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -208,7 +276,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /#event-modal -->
                 <!-- Modal - Calendar - Add Category -->
                 <div class="modal fade none-border" id="add-category">
@@ -239,10 +307,10 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
+                            <!-- <div class="modal-footer">
                                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -274,8 +342,11 @@
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
+      $("#patientLilProfile").hide();
     });
 
     </script>
+    <script src="fetching.js">  </script>
+
 </body>
 </html>
