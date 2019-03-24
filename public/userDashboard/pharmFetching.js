@@ -134,7 +134,8 @@ var Med;
     Med = snapshot;});
 var MedRef = root.child(ordPres).child(Med.key);
 var satPrice = prompt("Please set a Price for the approval medicine!");
-while (satPrice==null) { satPrice = prompt("Please you must to set a Price for the approval medicine!");}
+// window.alert(satPrice);
+// while (satPrice==null || satPrice.trim()=="") { satPrice = prompt("Please you must to set a Price for the approval medicine!");}
 
 MedRef.update(
 { OrderStatus: "Approved",
