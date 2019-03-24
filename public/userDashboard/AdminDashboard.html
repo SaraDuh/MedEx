@@ -95,10 +95,10 @@
                     <li class="active">
                         <a><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
-                    <li class="menu-title"><a href="AdminDashboard.html" >Drivers</a></li>
-                    <li class="menu-title"><a href="#" >Prescriptions</a></li>
-                    <li class="menu-title"><a href="#" >Extras</a></li>
-                    <li class="menu-title"><a href="#" >Extras</a></li>
+                    <!-- <li class="menu-title"><a href="AdminDashboard.html" >Drivers</a></li> -->
+                    <!-- <li class="menu-title"><a href="#" >Prescriptions</a></li> -->
+                    <li class="menu-title"><a href="AdminDashboard.html" class="fa fa-car"> Drivers</a></li>
+                    <li class="menu-title" onclick="logout()"><a class="fa fa-sign-out"href="#" > Logout</a></li>
 
                     <!-- <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -142,15 +142,13 @@
                       <span class="count bg-danger">3</span>
                   </button>
               </div> -->
-              <div class="dropdown for-message">
+              <!-- <div class="dropdown for-message">
                   <button class="btn btn-secondary dropdown-toggle" type="button" onclick="logout()">
                       <i>
-                        <!-- TAB -->
                         Logout
                       </i>
-                      <!-- <span class="count bg-primary">4</span> -->
                   </button>
-                </div>
+                </div> -->
         </div>
       </div>
     </div>
@@ -173,15 +171,15 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="box-title">Drivers
-                                      <a href="/AddDriverForm/index.html" style="background: #00B23C; float:right;" class="badge card-body-button">Add Drivers</a>
-</h4>
+                                      <a href="/AddDriverForm/index.html" class="badge card-body-button"><button type="button" class="btn btn-outline-primary btn-outline-profile"><i class="fa fa-plus"></i>&nbsp; Add Driver</button></a>
+<!-- <button type="button" class="btn btn-outline-primary btn-sm btn-outline-profile"><i class="fa fa-user"></i>&nbsp; Patient Profile</button> -->
                                     <!-- <a href="#"><span style="background: #00B2F4; float:right; display:inline;" class="badge card-body-button">Add Drivers</span></a> -->
-
+<!-- <button type="button" class="btn btn-outline-primary btn-sm btn-outline-profile"><i class="fa fa-car"></i>&nbsp; Driver Profile</button> -->
                                 </div>
 
                                 <div class="card-body--">
                                     <div class="table-stats order-table ov-h">
-                                        <table class="table ">
+                                        <table class="table table-striped table-hover table-align-middle mb-0">
                                             <thead>
                                                 <tr>
                                                     <th class="serial">#</th>
@@ -200,10 +198,64 @@
                                     </div> <!-- /.table-stats -->
                                 </div>
                             </div> <!-- /.card -->
-                            <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by MRN.." title="Type in a MRN"> -->
                         </div>  <!-- /.col-lg-8 -->
                     </div>
                 </div>
+
+                <!-- new driver profile -->
+                <div id="DriverLilProfile" class="col-md-12">
+                    <aside class="profile-nav alt">
+                        <section class="card">
+                            <div class="card-header user-header alt">
+                                <div id="patname" class="media">
+                                    <a href="#">
+                                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/driver.png">
+                                    </a>
+                                    <!-- <i class="ti-user align-self-center rounded-circle mr-3" style="width:85px; height:85px;"></i> -->
+                                    <div>
+                                        <h2></h2>
+                                        <p></p>
+
+                                      <a href="" id="a"><button type="button" class="btn btn-outline-secondary" onclick="goToForm()"><i class="fa fa-plus-square"></i>&nbsp; Edit Driver Profile</button></a>
+
+                                        <!-- <p>Project Manager</p> -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item li2" id="gender">
+                                    <a href="#"> <i class="fa fa-phone"></i> Phone Number : <font></font> </a>
+                                </li>
+                                <li class="list-group-item li3" id="mrn">
+                                    <a href="#"> <i class="fa fa-envelope"></i> Email : <font></font> </a>
+                                </li>
+                                <li class="list-group-item li1" id="age">
+                                    <a href="#"> <i class="fa fa-map-marker"></i> Area : <font></font> </a>
+                                </li>
+                                <!-- <li class="list-group-item li4" id="mobilenum">
+                                    <a href="#"> <i class="fa fa-phone"></i> Phone Number :  <font></font></a>
+                                </li> -->
+                                <!-- <li class="list-group-item li5">
+                                    <a href="#"> <i class="fa fa-user-md"></i> Medical History :  <font></font></a>
+                                </li> -->
+                                <!-- <li class="list-group-item li6">
+                                    <a href="#"> <i class="fa fa-home"></i> Address :  <font></font></a>
+                                </li> -->
+                                <!-- <li class="list-group-item li7">
+                                    <a href="#"> <i class="fa fa-map-pin"></i> Postal Code :  <font></font></a>
+                                </li> -->
+                            </ul>
+
+                        </section>
+                    </aside>
+                </div>
+
+
+
+
                 <div class="modal fade none-border" id="event-modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -285,6 +337,8 @@
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
+      $("#DriverLilProfile").hide();
+
     });
 
     </script>
