@@ -93,7 +93,7 @@ DriverRoot.update({
 
 });
 
-window.location="../../driverProfile.html?PhoneNo="+PhoneNo;
+window.location="../../userDashboard/AdminDashboard.html";
 }// if Validaty
 else { window.alert("Invalid Input \nPlease fill all the required fields with a valid information"); }
 
