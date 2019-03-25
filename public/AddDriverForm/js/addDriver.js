@@ -44,13 +44,23 @@ console.log("Validaty: "+Validaty);
 
 if(Validaty) {
 
+var area = document.getElementById("area_selected");
+var textarea = area.options[area.selectedIndex].value;
+console.log(textarea);
+// function castvote() {
+//     var mySelect = document.getElementById("vote");
+//     alert(mySelect.options[mySelect.selectedIndex].value);
+// }
+
+
+
 
 var name = $('#fName').val()+" "+$('#lName').val();
 console.log(name);
 
 root.push({
-
-  DeliveryArea:$('#area').val(),
+//$('#area').val()
+  DeliveryArea:textarea,
   Email:$('#email').val(),
   Name: name,
   PhoneNo: $("#phone").val(),

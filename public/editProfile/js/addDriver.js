@@ -38,7 +38,7 @@ root.on("child_added", snap => {
 $("#fName").val(Name);
 $("#email").val(email);
 $("#phone").val(PhoneNo);
-$("#area").val(area);
+$("#area_selected").val(area);
 
 
  }
@@ -72,21 +72,24 @@ var email = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
       if($(input[i]).val().trim().match(/^[0-9]{12}$/) == null) {
         Validaty = false; }
     }
-    else if($(input[i]).attr('name') == 'name' || $(input[i]).attr('name') == 'area' ) {
+    else if($(input[i]).attr('name') == 'name' ) {
       if($(input[i]).val().trim().match(/^[a-zA-Z ]{1,20}$/) == null) {
         Validaty = false; }
     }
 
  } // for loop
+ //|| $(input[i]).attr('name') == 'area'
 console.log("Validaty: "+Validaty);
 
 
 
   if(Validaty) {
+    var area = document.getElementById("area_selected");
+    var textarea = area.options[area.selectedIndex].value;
 
 DriverRoot.update({
 
-  DeliveryArea:$('#area').val(),
+  DeliveryArea:textarea,
   Email:$('#email').val(),
   Name:$('#fName').val(),
   PhoneNo: $('#phone').val()
