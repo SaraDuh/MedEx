@@ -66,7 +66,7 @@ root.on("child_added", snap => {
 
 var P_mrn;
 function patientProfile(Name, mrn, gender, age, phone, MH, address, postalCode, snapPatient){
-  console.log(age);
+  // console.log(age);
 
     $("div#patname h2").text(Name);
     $("li.li1").find('font').html(age);
@@ -76,7 +76,7 @@ function patientProfile(Name, mrn, gender, age, phone, MH, address, postalCode, 
     $("li.li5").find('font').html(MH);
     $("li.li6").find('font').html(address);
     $("li.li7").find('font').html(postalCode);
-    // $("li.li8").find('#Prescriptions').html(PresHTML);
+
     getPrescriptions(snapPatient);
     P_mrn=mrn;
   $("#patientLilProfile").show();
@@ -88,11 +88,12 @@ function patientProfile(Name, mrn, gender, age, phone, MH, address, postalCode, 
 function getPrescriptions(snapPatient) {
   $("#nav-tab").empty();
   $("#nav-tabContent").empty();
+  $(".default-tab").show();
+  $("#noPres").empty();
+
   var rootPaient = root.child(snapPatient).child("Prescriptions");
   var IDPR = 1;
   var numOfPres = 0;
-  // var HTMLtabs = "";
-  // var HTMLtabContent = "";
 
   rootPaient.on("child_added", snap => {
     var PrescribedPhysician = snap.child("PrescribedPhysician").val();
@@ -110,7 +111,7 @@ function getPrescriptions(snapPatient) {
 
     $("#nav-tabContent").append(HTMLtabContent);
 
-     console.log(snap.key);
+     // console.log(snap.key);
 
     var rootMed = rootPaient.child(snap.key);
     var Doze, Frequency, Quantity, Refill, RelatedDetails, nextRefillDate, numOfMeds;
@@ -131,8 +132,8 @@ function getPrescriptions(snapPatient) {
 
         var HTMLp ="<br><br><strong> Medicine Name: </strong>"+Name+"<br> <strong>Frequency: </strong>"
         +Frequency+", <strong>Dose: </strong>"+Doze+", <strong>Quantity: </strong>"+Quantity
-        +"<br><strong>Refillilability: </strong>"+Refill+"<br><strong>Related Details: </strong>"+
-        RelatedDetails+"<br> <strong>Next Refill Date: </strong>"+nextRefillDate;
+        +"<br><strong>Refillability: </strong>"+Refill+"<br><strong>Related Details: </strong>"+RelatedDetails;
+        if(Refill=="True") HTMLp += "<br> <strong>Next Refill Date: </strong>"+nextRefillDate;
 
         // if(numOfMeds>1) $(("#"+IDPR)).append("<br>");
         if(numOfMeds>0) $(("#"+IDPR)).append(HTMLp);
@@ -143,9 +144,11 @@ function getPrescriptions(snapPatient) {
     numOfPres++;
 
 });
-if(numOfPres==0) $(".card-body").html("No Prescriped Prescription.");
-
-console.log("numOfPres:"+numOfPres);
+if(numOfPres==0) {
+$(".default-tab").hide();
+$("#noPres").append("No Prescriped Prescription.");
+}
+// console.log("numOfPres:"+numOfPres);
 }
 
 

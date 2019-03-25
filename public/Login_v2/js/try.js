@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           if (role=="Physician") {
           window.location = '/userDashboard/dashboard.html';}
           else if (role=="Pharmacist") {
-          window.location = '/userDashboard/PharmDashboard.html';}
+          window.location = '/userDashboard/pharmDashboard.html';}
           else if (role=="Admin") {
           window.location = '/userDashboard/AdminDashboard.html';}
       });

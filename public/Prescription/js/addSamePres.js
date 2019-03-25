@@ -180,7 +180,10 @@ pref.push({
 
 else if (ROLE=="Pharmacist") {
   var satPrice = prompt("Please set a Price for the approval medicine!");
-  while (satPrice==null) { satPrice = prompt("Please you must to set a Price for the approval medicine!");}
+  while (satPrice==null || satPrice.trim()=="" || satPrice.trim().match(/^[0-9]*$/) == null) {
+    window.alert("Please set a valid Price or 0 for free indication");
+    satPrice = prompt("Please you must to set a Price for the approval medicine!");}
+
 
   pref.push({
     Name:$('#mdName').val(),
