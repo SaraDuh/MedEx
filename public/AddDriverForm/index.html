@@ -47,27 +47,7 @@
 <body>
 
 <!-- adding header -->
-<header class="header-area">
-	 <div id="header" id="home">
-			 <div class="container">
-					 <div class="row align-items-center justify-content-between d-flex">
-					 <!-- <div id="logo">
-							 <a href="index.html"><img src="assets/images/logo/logo.png" alt="" title="" /></a>
-					 </div> -->
-					 <nav id="nav-menu-container">
-							 <ul class="nav-menu">
-									 <li class="menu-active"><img src="assets/images/logo/logo.png" alt=""></li>
-									 <li class="menu-active"><a href="index.html">Home</a></li>
-									 <!-- <li><a href="departments.html">Services</a></li> -->
-									 <li><a href="doctors.html">About us</a></li>
 
-									 <li><a href="Login_v2/index.html">Login</a></li>
-							 </ul>
-					 </nav><!-- #nav-menu-container -->
-					 </div>
-			 </div>
-	 </div>
-</header>
 
 <!-- ending header  -->
 	<div class="container-contact100">
@@ -99,14 +79,37 @@
 					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate="Please enter the Delivery Area">
-					<input id="area" class="input100" type="text" name="area" placeholder="Delivery Area">
+				<div>
+					<!-- <input id="area" class="input100" type="text" name="area" placeholder="Delivery Area"> -->
 					<span class="focus-input100"></span>
+					<select id="area_selected" data-placeholder="Choose the Delivery Area..." class="standardSelect" tabindex="1">
+						<option value="" label="Choose the Delivery Area"></option>
+						<option value="Hittin">Hittin</option>
+						<option value="Al-Malga">Al-Malga</option>
+						<option value="Al-Sahafa">Al-Sahafa</option>
+						
+						<option value="Al-Wadi">Al-Wadi</option>
+						<option value="Al-Ghadir">Al-Ghadir</option>
+						<option value="Al-Nafil">Al-Nafil</option>
+						<option value="Al-Qayrawan">Al-Qayrawan</option>
+						<option value="Al-Shifa">Al-Shifa</option>
+						<option value="Al-Shifa">Al-Shifa</option>
+						<option value="Al-Selayy">Al-Selayy</option>
+						<option value="Al-Rawdhah">Al-Rawdhah</option>
+						<option value="Gharnatah">Gharnatah</option>
+						<option value="Qortubah">Qortubah</option>
+						<option value="Al-Hamra">Al-Hamra</option>
+						<option value="Al-Malaz">Al-Malaz</option>
+						<option value="Al-Olayya">Al-Olayya</option>
+						<option value="Al-Nakheel">Al-Nakheel</option>
+						<option value="Al-Masif">Al-Masif</option>
+						<option value="Al-Izdihar">Al-Izdihar</option>
+
+				</select>
+				<!-- <input type="button" value="vote" onclick="castvote();"> -->
 				</div>
-				<!-- <div class="wrap-input100 validate-input" data-validate = "Please enter your message">
-					<textarea class="input100" name="message" placeholder="Your Message"></textarea>
-					<span class="focus-input100"></span>
-				</div> -->
+
+
 
 				<div class="container-contact100-form-btn">
 					<button id="btnAdd" class="contact100-form-btn">
