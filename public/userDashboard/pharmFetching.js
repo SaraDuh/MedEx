@@ -157,7 +157,7 @@ var users = root.parent.child("users");
 } // if mrn
 });
 alert("Prescriped "+MedName+" is successfully Approved");
-
+document.getElementById("orderDescription").style.display='none';
 }// Approve function
 
 
@@ -191,8 +191,10 @@ alert("Prescriped "+MedName+" has been Denied");
 var answer  = confirm("Would you like to subtitute the denied medicine to another one?");
 if (answer){
   // var satPrice = prompt("Please enter a Price for the approval medicine!");
+  // document.getElementById("orderDescription").style.display='none';
   subtitute(MedName,ordPres,MRN);}
 else {
+  document.getElementById("orderDescription").style.display='none';
   $("#").load(" #tableBody> *"); }
 } // deny function
 
@@ -230,5 +232,3 @@ patientRoot.orderByChild("Role").equalTo("Patient").on("child_added", function(p
 //
 //
 // }
-
-  

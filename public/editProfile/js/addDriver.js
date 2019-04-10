@@ -39,8 +39,6 @@ $("#fName").val(Name);
 $("#email").val(email);
 $("#phone").val(PhoneNo);
 $("#area_selected").val(area);
-
-
  }
 });
 
@@ -55,9 +53,6 @@ console.log(driverRef.key);
 var DriverRoot = firebase.database().ref().child("users").child(driverRef.key);
 
 // check before update
-
-
-
 
 var Validaty = true;
 var input = $('.validate-input .input100');
@@ -76,8 +71,13 @@ var email = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
       if($(input[i]).val().trim().match(/^[a-zA-Z ]{1,20}$/) == null) {
         Validaty = false; }
     }
-
  } // for loop
+ // check dropDownMenu for Delivery Area
+ var dropDownMenu = document.getElementById("area_selected");
+ var slectedArea = dropDownMenu.options[dropDownMenu.selectedIndex].value;
+ console.log(slectedArea);
+ if (slectedArea == "") Validaty = false; // check dropDownMenu
+
  //|| $(input[i]).attr('name') == 'area'
 console.log("Validaty: "+Validaty);
 
@@ -98,7 +98,8 @@ DriverRoot.update({
 
 window.location="../../userDashboard/AdminDashboard.html";
 }// if Validaty
-else { window.alert("Invalid Input \nPlease fill all the required fields with a valid information"); }
+else {
+  window.alert("Invalid Input \nPlease fill all the required fields with a valid information"); }
 
 
 });
